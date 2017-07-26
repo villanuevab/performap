@@ -1,3 +1,17 @@
-// Place all the styles related to the directory controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$font-family-text: "Roboto", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+
+html, body {
+  font-family: $font-family-text;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.container {
+  padding: 10px;
+  height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
