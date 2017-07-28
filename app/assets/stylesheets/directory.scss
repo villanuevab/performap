@@ -1,3 +1,25 @@
+$color-almond: #EDD6C2;
+$color-aths-special: #E8E5C3;
+$color-surf-crest: #D1E4D4;
+$color-spindle: #C5DDF0;
+$color-perfume: #ECCDFB;
+
+$color-directory-main-box-background: $color-perfume;
+$color-directory-other-box-background: #000000;
+$color-map-main-box-background: $color-perfume;
+$color-map-other-box-background: #000000;
+$color-search-box-background: $color-surf-crest;
+$color-latest-box-background: $color-aths-special;
+$color-country-box-background: $color-almond;
+$color-details-box-background: $color-spindle;
+
+$col-menu-width-full: 180px;
+$col-latest-width-full: 0;
+$col-country-width-full: 0;
+$col-details-width-full: 0;
+
+$box-margin: 10px;
+
 $font-family-text: "Roboto", "Helvetica Neue", "Helvetica", Arial, sans-serif;
 
 html, body {
@@ -15,3 +37,38 @@ html, body {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
 }
+
+@mixin cell-heading($background-color, $width) {
+  background-color: $background-color;
+  width: $width;
+  padding: 8px 5px;
+  text-transform: uppercase;
+}
+
+@mixin cell-text($background-color, $width) {
+  padding: 5px;
+  background-color: $background-color;
+  width: $width;
+}
+
+.directory-main {
+  margin-bottom: $box-margin;
+  margin-right: $box-margin;
+  .directory-title { @include cell-heading($color-directory-main-box-background, $col-menu-width-full) }
+}
+
+.search {
+  @include cell-heading($color-search-box-background, $col-menu-width-full);
+  margin-bottom: $box-margin;
+  margin-right: $box-margin;
+}
+
+.map-other {
+  @include cell-heading($color-map-other-box-background, $col-menu-width-full);
+  color: #ffffff;
+  margin-right: $box-margin;
+}
+
+.latest { @include cell-heading($color-directory-main-box-background, 150px) }
+
+.country { @include cell-heading($color-directory-main-box-background, 150px) }
