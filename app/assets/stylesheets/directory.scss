@@ -13,9 +13,9 @@ $color-latest-box-background: $color-aths-special;
 $color-country-box-background: $color-almond;
 $color-details-box-background: $color-spindle;
 
-$col-menu-width-full: 180px;
-$col-latest-width-full: 0;
-$col-country-width-full: 0;
+$col-menu-width-full: 160px;
+$col-latest-width-full: 280px;
+$col-country-width-full: 400px;
 $col-details-width-full: 0;
 
 $box-margin: 10px;
@@ -34,41 +34,71 @@ html, body {
   height: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
+h1, h2, h3, h4, h5, h6 { margin-top: 0; }
+
+a, a:link, a:hover, a:visited {
+  color: #000000;
+  text-decoration: none;
 }
 
-@mixin cell-heading($background-color, $width) {
-  background-color: $background-color;
+%col-format {
+  margin-right: $box-margin;
+  display: inline-block;
+  vertical-align: top;
+}
+
+@mixin col($width) {
+  @extend %col-format;
   width: $width;
+}
+
+%cell-heading-format {
   padding: 8px 5px;
   text-transform: uppercase;
 }
 
-@mixin cell-text($background-color, $width) {
+@mixin cell-heading($background-color) {
+  @extend %cell-heading-format;
+  background-color: $background-color;
+}
+
+@mixin cell-entry($background-color) {
   padding: 5px;
   background-color: $background-color;
-  width: $width;
 }
 
-.directory-main {
-  margin-bottom: $box-margin;
-  margin-right: $box-margin;
-  .directory-title { @include cell-heading($color-directory-main-box-background, $col-menu-width-full) }
+.col-menu {
+  @include col($col-menu-width-full);
+
+  .directory-main {
+    margin-bottom: $box-margin;
+    .directory-title { @include cell-heading($color-directory-main-box-background) }
+  }
+
+  .search {
+    @include cell-heading($color-search-box-background);
+    margin-bottom: $box-margin;
+  }
+
+  .map-other {
+    @include cell-heading($color-map-other-box-background);
+    color: #ffffff;
+  }
 }
 
-.search {
-  @include cell-heading($color-search-box-background, $col-menu-width-full);
-  margin-bottom: $box-margin;
-  margin-right: $box-margin;
+.col-latest {
+  @include col($col-latest-width-full);
+
+  .latest { @include cell-heading($color-latest-box-background) }
 }
 
-.map-other {
-  @include cell-heading($color-map-other-box-background, $col-menu-width-full);
-  color: #ffffff;
-  margin-right: $box-margin;
+.col-country {
+  @include col($col-country-width-full);
+
+  .country { @include cell-heading($color-country-box-background) }
 }
 
-.latest { @include cell-heading($color-directory-main-box-background, 150px) }
-
-.country { @include cell-heading($color-directory-main-box-background, 150px) }
+.col-details {
+  @include col($col-details-width-full);
+  margin-right: 0;
+}
