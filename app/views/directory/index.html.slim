@@ -1,18 +1,31 @@
 h1 Performap
 
 .col-menu
-  = link_to root_path, class: "link-latest" do
-    .directory-main
+  .directory-main
+    = link_to root_path, class: "link-latest" do
       .directory-title Directory
+    .directory-entries.hidden
+      .directory-subtitle Country
+      .directory-entry USA
+      .directory-entry Spain
+      .directory-entry England
+      .directory-entry Brazil
+      .directory-entry Japan
+      .directory-entry Egypt
+      .directory-entry South Africa
+      .directory-entry Germany
+      .directory-entry Canada
+      .directory-entry Australia
+      .directory-entry More...
 
   .search Search...
 
   .map-other Map
 
-.col-latest
+.col-latest.hidden
   .latest Latest
 
-.col-country
+.col-country.hidden
   .country USA
 
-.col-details
+.col-details.hidden

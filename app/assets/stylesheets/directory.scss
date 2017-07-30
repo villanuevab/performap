@@ -30,8 +30,9 @@ html, body {
 }
 
 .container {
-  padding: 10px;
   height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 h1, h2, h3, h4, h5, h6 { margin-top: 0; }
@@ -63,8 +64,13 @@ a, a:link, a:hover, a:visited {
 }
 
 @mixin cell-entry($background-color) {
-  padding: 5px;
+  padding: 2px 5px;
   background-color: $background-color;
+}
+
+@mixin cell-entry-indented($background-color) {
+  background-color: $background-color;
+  padding: 2px 15px;
 }
 
 .col-menu {
@@ -72,7 +78,15 @@ a, a:link, a:hover, a:visited {
 
   .directory-main {
     margin-bottom: $box-margin;
+    text-transform: uppercase;
+
     .directory-title { @include cell-heading($color-directory-main-box-background) }
+    .directory-subtitle { @include cell-entry($color-directory-main-box-background) }
+    .directory-entry {
+      @include cell-entry-indented($color-directory-main-box-background);
+
+      border-top: 1px solid #ffffff;
+    }
   }
 
   .search {
@@ -101,4 +115,8 @@ a, a:link, a:hover, a:visited {
 .col-details {
   @include col($col-details-width-full);
   margin-right: 0;
+}
+
+.hidden {
+  display: none;
 }
