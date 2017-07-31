@@ -24,6 +24,7 @@ $font-family-text: "Roboto", "Helvetica Neue", "Helvetica", Arial, sans-serif;
 
 html, body {
   font-family: $font-family-text;
+  font-size: 14px;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -81,11 +82,19 @@ a, a:link, a:hover, a:visited {
     text-transform: uppercase;
 
     .directory-title { @include cell-heading($color-directory-main-box-background) }
-    .directory-subtitle { @include cell-entry($color-directory-main-box-background) }
-    .directory-entry {
-      @include cell-entry-indented($color-directory-main-box-background);
 
-      border-top: 1px solid #ffffff;
+    .directory-entries {
+      display: none;
+
+      .directory-subtitle {
+        @include cell-entry($color-directory-main-box-background);
+        border-top: 1px solid #ffffff;
+      }
+
+      .directory-entry {
+        @include cell-entry-indented($color-directory-main-box-background);
+        border-top: 1px solid #ffffff;
+      }
     }
   }
 
@@ -103,13 +112,25 @@ a, a:link, a:hover, a:visited {
 .col-latest {
   @include col($col-latest-width-full);
 
-  .latest { @include cell-heading($color-latest-box-background) }
+  .latest {
+    display: none;
+
+    .latest-title { @include cell-heading($color-latest-box-background) }
+
+    .latest-entry {
+      @include cell-entry($color-latest-box-background);
+      border-top: 1px solid #ffffff;
+    }
+  }
 }
 
 .col-country {
   @include col($col-country-width-full);
 
-  .country { @include cell-heading($color-country-box-background) }
+  .country {
+    @include cell-heading($color-country-box-background);
+    display: none;
+  }
 }
 
 .col-details {
@@ -117,6 +138,4 @@ a, a:link, a:hover, a:visited {
   margin-right: 0;
 }
 
-.hidden {
-  display: none;
-}
+.hidden { display: none; }

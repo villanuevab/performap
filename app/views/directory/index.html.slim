@@ -4,9 +4,10 @@ h1 Performap
   .directory-main
     = link_to root_path, class: "link-latest" do
       .directory-title Directory
-    .directory-entries.hidden
+    .directory-entries
       .directory-subtitle Country
-      .directory-entry USA
+      = link_to root_path, class: "link-country" do
+        .directory-entry USA
       .directory-entry Spain
       .directory-entry England
       .directory-entry Brazil
@@ -18,12 +19,34 @@ h1 Performap
       .directory-entry Australia
       .directory-entry More...
 
+      .directory-subtitle &nbsp;
+
+      .directory-subtitle Type
+      .directory-entry Play
+      .directory-entry Musical
+      .directory-entry Festival
+      .directory-entry Biennial
+
   .search Search...
 
   .map-other Map
 
 .col-latest.hidden
-  .latest Latest
+  .latest
+    .latest-title Latest
+    .latest-entries
+      .latest-entry Marvin’s Room New York City
+      .latest-entry Hamlet Milano
+      .latest-entry Hamlet New York City
+      .latest-entry Antigone Athens
+      .latest-entry Bella Figura Vienna
+      .latest-entry Claus Peymann Berlin
+      .latest-entry Die Wand Vienna
+      .latest-entry Salomé London
+      .latest-entry Mosquitoes Lisbon
+      .latest-entry Jane Eyre Boston
+      .latest-entry Oslo Oslo
+      .latest-entry Barber Shop Chronicles Austin
 
 .col-country.hidden
   .country USA
