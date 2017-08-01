@@ -44,9 +44,13 @@ a, a:link, a:hover, a:visited {
   text-decoration: none;
 }
 
+@mixin darken-cell($background-color) {
+  background-color: darken($background-color, 10%);
+}
+
 @mixin darken-background-on-hover($background-color) {
   &:hover {
-    background-color: darken($background-color, 10%);
+    @include darken-cell($background-color);
   }
 }
 
@@ -93,7 +97,10 @@ a, a:link, a:hover, a:visited {
       .directory-entry {
         @extend %cell-entry-indented;
         @include darken-background-on-hover($color-directory-main-box-background);
+
         border-top: 1px solid #ffffff;
+
+        &.selected { @include darken-cell($color-directory-main-box-background); }
       }
     }
   }
@@ -155,6 +162,8 @@ a, a:link, a:hover, a:visited {
 
         border-top: 1px solid #ffffff;
         text-transform: uppercase;
+
+        &.selected { @include darken-cell($color-country-box-background); }
       }
 
       .country-city-entries {
@@ -165,6 +174,8 @@ a, a:link, a:hover, a:visited {
           @include darken-background-on-hover($color-country-box-background);
 
           border-top: 1px solid #ffffff;
+
+          &.selected { @include darken-cell($color-country-box-background); }
 
           .country-entry-name, .country-entry-venue, .country-entry-start-date { display: inline-block; }
           .country-entry-name { width: 40%; }
@@ -185,9 +196,7 @@ a, a:link, a:hover, a:visited {
     display: none;
 
     .details-title { @extend %cell-heading; }
-    .details-entry {
-      @extend %cell-entry;
-    }
+    .details-entry { @extend %cell-entry; }
   }
 }
 
