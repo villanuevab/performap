@@ -15,8 +15,9 @@ $color-details-box-background: $color-spindle;
 
 $col-menu-width-full: 160px;
 $col-latest-width-full: 280px;
-$col-country-width-full: 400px;
-$col-details-width-full: 0;
+$col-latest-width-collapsed: $col-menu-width-full / 2;
+$col-country-width-full: 450px;
+$col-details-width-full: 500px;
 
 $box-margin: 10px;
 
@@ -43,6 +44,12 @@ a, a:link, a:hover, a:visited {
   text-decoration: none;
 }
 
+@mixin darken-background-on-hover($background-color) {
+  &:hover {
+    background-color: darken($background-color, 10%);
+  }
+}
+
 %col-format {
   margin-right: $box-margin;
   display: inline-block;
@@ -54,25 +61,13 @@ a, a:link, a:hover, a:visited {
   width: $width;
 }
 
-%cell-heading-format {
+%cell-heading {
   padding: 8px 5px;
   text-transform: uppercase;
 }
 
-@mixin cell-heading($background-color) {
-  @extend %cell-heading-format;
-  background-color: $background-color;
-}
-
-@mixin cell-entry($background-color) {
-  padding: 2px 5px;
-  background-color: $background-color;
-}
-
-@mixin cell-entry-indented($background-color) {
-  background-color: $background-color;
-  padding: 2px 15px;
-}
+%cell-entry { padding: 2px 5px; }
+%cell-entry-indented { padding: 2px 15px; }
 
 .col-menu {
   @include col($col-menu-width-full);
@@ -80,46 +75,66 @@ a, a:link, a:hover, a:visited {
   .directory-main {
     margin-bottom: $box-margin;
     text-transform: uppercase;
+    background-color: $color-directory-main-box-background;
 
-    .directory-title { @include cell-heading($color-directory-main-box-background) }
+    .directory-title {
+      @extend %cell-heading;
+      @include darken-background-on-hover($color-directory-main-box-background);
+    }
 
     .directory-entries {
       display: none;
 
       .directory-subtitle {
-        @include cell-entry($color-directory-main-box-background);
+        @extend %cell-entry;
         border-top: 1px solid #ffffff;
       }
 
       .directory-entry {
-        @include cell-entry-indented($color-directory-main-box-background);
+        @extend %cell-entry-indented;
+        @include darken-background-on-hover($color-directory-main-box-background);
         border-top: 1px solid #ffffff;
       }
     }
   }
 
   .search {
-    @include cell-heading($color-search-box-background);
+    @extend %cell-heading;
+    background-color: $color-search-box-background;
     margin-bottom: $box-margin;
   }
 
   .map-other {
-    @include cell-heading($color-map-other-box-background);
+    @extend %cell-heading;
+    background-color: $color-map-other-box-background;
     color: #ffffff;
   }
 }
 
 .col-latest {
-  @include col($col-latest-width-full);
+  @extend %col-format;
 
   .latest {
     display: none;
+    background-color: $color-latest-box-background;
 
-    .latest-title { @include cell-heading($color-latest-box-background) }
+    .latest-title {
+      @extend %cell-heading;
+      width: $col-latest-width-collapsed;
+    }
 
-    .latest-entry {
-      @include cell-entry($color-latest-box-background);
-      border-top: 1px solid #ffffff;
+    .latest-entries {
+      width: $col-latest-width-full;
+
+      .latest-entry {
+        @extend %cell-entry;
+
+        border-top: 1px solid #ffffff;
+
+        .latest-entry-name, .latest-entry-city { display: inline-block; }
+        .latest-entry-name { width: 60%; }
+        .latest-entry-city { width: 40%; }
+      }
     }
   }
 }
@@ -128,14 +143,52 @@ a, a:link, a:hover, a:visited {
   @include col($col-country-width-full);
 
   .country {
-    @include cell-heading($color-country-box-background);
     display: none;
+    background-color: $color-country-box-background;
+
+    .country-title { @extend %cell-heading; }
+
+    .country-entries {
+      .country-city {
+        @extend %cell-entry;
+        @include darken-background-on-hover($color-country-box-background);
+
+        border-top: 1px solid #ffffff;
+        text-transform: uppercase;
+      }
+
+      .country-city-entries {
+        display: none;
+
+        .country-entry {
+          @extend %cell-entry-indented;
+          @include darken-background-on-hover($color-country-box-background);
+
+          border-top: 1px solid #ffffff;
+
+          .country-entry-name, .country-entry-venue, .country-entry-start-date { display: inline-block; }
+          .country-entry-name { width: 40%; }
+          .country-entry-venue { width: 40%; }
+          .country-entry-start-date { width: 20%; }
+        }
+      }
+    }
   }
 }
 
 .col-details {
   @include col($col-details-width-full);
   margin-right: 0;
+
+  .details {
+    background-color: $color-details-box-background;
+    display: none;
+
+    .details-title { @extend %cell-heading; }
+    .details-entry {
+      @extend %cell-entry;
+    }
+  }
 }
 
 .hidden { display: none; }
