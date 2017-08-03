@@ -1,0 +1,30 @@
+$color-almond: #EDD6C2;
+$color-aths-special: #E8E5C3;
+$color-surf-crest: #D1E4D4;
+$color-spindle: #C5DDF0;
+$color-perfume: #ECCDFB;
+
+$font-family-text: "Roboto", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+
+html, body {
+  font-family: $font-family-text;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 { margin-top: 0; }
+
+a, a:link, a:hover, a:visited {
+  color: #000000;
+  text-decoration: none;
+}
+
+.hidden { display: none; }

@@ -62,3 +62,6 @@ $ ->
         $('.col-details').addClass 'hidden'
         selected_cell.removeClass 'selected'
     false
+
+  $('#country-table').tablesorter()
+  $('#myTable').tablesorter()

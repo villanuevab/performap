@@ -1,0 +1,169 @@
+h1 Performap
+
+.col-menu
+  .directory-main
+    = link_to root_path, class: "link-latest" do
+      .directory-title Directory
+    .directory-entries
+      .directory-subtitle Country
+      = link_to root_path, class: "link-country" do
+        .directory-entry USA
+      .directory-entry Spain
+      .directory-entry England
+      .directory-entry Brazil
+      .directory-entry Japan
+      .directory-entry Egypt
+      .directory-entry South Africa
+      .directory-entry Germany
+      .directory-entry Canada
+      .directory-entry Australia
+      .directory-entry More...
+
+      .directory-subtitle &nbsp;
+
+      .directory-subtitle Type
+      .directory-entry Play
+      .directory-entry Musical
+      .directory-entry Festival
+      .directory-entry Biennial
+
+  .search Search...
+
+  .map-other Map
+
+.col-latest.hidden
+  .latest
+    .latest-title Latest
+    .latest-entries
+      .latest-entry
+        .latest-entry-name Marvin’s Room
+        .latest-entry-city New York City
+      .latest-entry
+        .latest-entry-name Hamlet
+        .latest-entry-city Milano
+      .latest-entry
+        .latest-entry-name Hamlet
+        .latest-entry-city New York City
+      .latest-entry
+        .latest-entry-name Antigone
+        .latest-entry-city Athens
+      .latest-entry
+        .latest-entry-name Bella Figura
+        .latest-entry-city Vienna
+      .latest-entry
+        .latest-entry-name Claus Peymann
+        .latest-entry-city Berlin
+      .latest-entry
+        .latest-entry-name Die Wand
+        .latest-entry-city Vienna
+      .latest-entry
+        .latest-entry-name Salome
+        .latest-entry-city London
+      .latest-entry
+        .latest-entry-name Mosquitoes
+        .latest-entry-city Lisbon
+      .latest-entry
+        .latest-entry-name Jane Eyre
+        .latest-entry-city Boston
+      .latest-entry
+        .latest-entry-name Oslo
+        .latest-entry-city Oslo
+      .latest-entry
+        .latest-entry-name Barber Shop Chronicles
+        .latest-entry-city Austin
+
+.col-country.hidden
+  .country
+    table#country-table.tablesorter-custom
+      thead
+        tr
+          th USA
+      tbody
+        tr
+          td.country-city New York City
+        tr
+          td.country-city Los Angeles
+        tr
+          td.country-city Chicago
+        tr
+          td.country-city Houston
+        tr
+          td.country-city Phoenix
+        tr
+          td.country-city Philadelphia
+        tr
+          td.country-city San Antonio
+        tr
+          td.country-city San Diego
+        tr
+          td.country-city Dallas
+
+.col-country.hidden
+  .country
+    .country-title USA
+    .country-entries
+      = link_to root_path, class: "link-country-city-expand"
+        .country-city New York City
+      .country-city-entries
+        = link_to root_path, class: "link-country-city-entry-details" do
+          .country-entry
+            .country-entry-name Hamlet
+            .country-entry-venue Public Theater
+            .country-entry-start-date 6/20–9/3
+        .country-entry
+          .country-entry-name Beginnings
+          .country-entry-venue Anspacher Theater
+          .country-entry-start-date 5/13–20/8
+        .country-entry
+          .country-entry-name Pinnochio
+          .country-entry-venue Belasco Theatre
+          .country-entry-start-date 4/10–10-4
+        .country-entry
+          .country-entry-name The Majority
+          .country-entry-venue New Amsterdam Theatre
+          .country-entry-start-date 5/20–9/15
+        .country-entry
+          .country-entry-name Salome
+          .country-entry-venue Radio City Musical Hall
+          .country-entry-start-date 7/3–11/20
+        .country-entry
+          .country-entry-name Follies
+          .country-entry-venue The Beacon Theatre
+          .country-entry-start-date 5/20–8/10
+        .country-entry
+          .country-entry-name Network
+          .country-entry-venue Hudson Theatre
+          .country-entry-start-date 4/13–8/13
+        .country-entry
+          .country-entry-name Hamlet
+          .country-entry-venue Public Theater
+          .country-entry-start-date 6/20–9/3
+        .country-entry
+          .country-entry-name As You Like It
+          .country-entry-venue Broadhurst Theatre
+          .country-entry-start-date 7/1–10/3
+        .country-entry
+          .country-entry-name Charlie and the Chocolate Factory
+          .country-entry-venue Lunt-Fontanne Theatre
+          .country-entry-start-date 7/17–4/22
+      .country-city Los Angeles
+      .country-city Chicago
+      .country-city Houston
+      .country-city Phoenix
+      .country-city Philadelphia
+      .country-city San Antonio
+      .country-city San Diego
+      .country-city Dallas
+      .country-city More...
+
+.col-details.hidden
+  .details
+    .details-title Hamlet
+    .details-entry
+      p Public Theater, Anspacher Theater 6/20–9/3
+      p Tickets: 75$–120$
+      p Oscar Isaac (Star Wars: The Force Awakens, Romeo and Juliet) returns to The Public in this electrifyingly intimate new production of Shakespeare’s eternal drama. Isaac is the Prince caught between thought and action, anger and anguish, as his uncle assumes the throne left vacant by his murdered father. As the dead King calls to him from the grave, demanding to be avenged, Hamlet is forced to choose between bearing the oppressor’s wrong or taking arms against a sea of troubles.
+      p Tony Award winner Sam Gold (Fun Home, Othello) directs theater’s most powerful tragedy about life and death, madness and conscience, and corruption—of the state and of the soul.
+      p HAMLET is made possible by the generous support of Luigi Caiola & Sean McGill and Susan & David Edelstein.
+      p This program is supported as part of the Dutch Culture USA program by the Consulate General of the Netherlands in New York.
+      p MORE DETAILS...

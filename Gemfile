@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'gon'
 gem 'jquery-rails'
 gem 'slim-rails'
+gem 'jquery-tablesorter'
 
 # Password encryption
 # gem 'bcrypt', '~> 3.1.7'
