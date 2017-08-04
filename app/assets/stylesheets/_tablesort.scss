@@ -142,6 +142,7 @@ $sortDescWhite : url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEAL
   /* style header */
   .tablesorter-header {
     @extend %unsorted;
+    background-color: $background-color;
     background-repeat: no-repeat;
     background-position: $arrowPosition;
     padding: $headerPadding;
@@ -182,6 +183,7 @@ $sortDescWhite : url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEAL
   tbody {
     td {
       @include allRows;
+      background-color: $background-color;
       padding: $overallPadding;
       vertical-align: top;
       border: $overallBorder;
@@ -232,6 +234,9 @@ $sortDescWhite : url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEAL
   tbody > tr.odd:hover + tr.tablesorter-childRow + tr.tablesorter-childRow > td {
     @include hovered($background-color);
   }
+
+  tbody > tr.tablesorter-childRow table tbody tr td { background-color: $background-color; }
+  tbody > tr.tablesorter-childRow table tbody tr:hover td { @include hovered($background-color); }
 
   /* table processing indicator - indeterminate spinner */
   .tablesorter-processing {
