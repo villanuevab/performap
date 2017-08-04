@@ -74,87 +74,55 @@ h1 Performap
 
 .col-country.hidden
   .country
-    table#country-table.tablesorter-custom
+    table#country-table.tablesorter
       thead
         tr
           th USA
       tbody
-        tr
-          td.country-city New York City
-        tr
-          td.country-city Los Angeles
-        tr
-          td.country-city Chicago
-        tr
-          td.country-city Houston
-        tr
-          td.country-city Phoenix
-        tr
-          td.country-city Philadelphia
-        tr
-          td.country-city San Antonio
-        tr
-          td.country-city San Diego
-        tr
-          td.country-city Dallas
-
-.col-country.hidden
-  .country
-    .country-title USA
-    .country-entries
-      = link_to root_path, class: "link-country-city-expand"
-        .country-city New York City
-      .country-city-entries
-        = link_to root_path, class: "link-country-city-entry-details" do
-          .country-entry
-            .country-entry-name Hamlet
-            .country-entry-venue Public Theater
-            .country-entry-start-date 6/20–9/3
-        .country-entry
-          .country-entry-name Beginnings
-          .country-entry-venue Anspacher Theater
-          .country-entry-start-date 5/13–20/8
-        .country-entry
-          .country-entry-name Pinnochio
-          .country-entry-venue Belasco Theatre
-          .country-entry-start-date 4/10–10-4
-        .country-entry
-          .country-entry-name The Majority
-          .country-entry-venue New Amsterdam Theatre
-          .country-entry-start-date 5/20–9/15
-        .country-entry
-          .country-entry-name Salome
-          .country-entry-venue Radio City Musical Hall
-          .country-entry-start-date 7/3–11/20
-        .country-entry
-          .country-entry-name Follies
-          .country-entry-venue The Beacon Theatre
-          .country-entry-start-date 5/20–8/10
-        .country-entry
-          .country-entry-name Network
-          .country-entry-venue Hudson Theatre
-          .country-entry-start-date 4/13–8/13
-        .country-entry
-          .country-entry-name Hamlet
-          .country-entry-venue Public Theater
-          .country-entry-start-date 6/20–9/3
-        .country-entry
-          .country-entry-name As You Like It
-          .country-entry-venue Broadhurst Theatre
-          .country-entry-start-date 7/1–10/3
-        .country-entry
-          .country-entry-name Charlie and the Chocolate Factory
-          .country-entry-venue Lunt-Fontanne Theatre
-          .country-entry-start-date 7/17–4/22
-      .country-city Los Angeles
-      .country-city Chicago
-      .country-city Houston
-      .country-city Phoenix
-      .country-city Philadelphia
-      .country-city San Antonio
-      .country-city San Diego
-      .country-city Dallas
-      .country-city More...
+        tr.country-city#nyc
+          td = link_to "New York City", "#", class: "toggle"
+          /= link_to "New York City", root_path, class: "link-country-city-expand"
+        tr.tablesorter-childRow.secondary-table
+          td
+            div.secondary-table-wrapper
+              table#country-city-table.tablesorter
+                thead
+                  tr
+                    th Name
+                    th Venue
+                    th Date
+                tbody
+                  tr.country-entry
+                    = link_to root_path, class: "link-country-city-entry-details" do
+                      td.country-entry-name Hamlet
+                      td.country-entry-venue Public Theater
+                      td.country-entry-start-date 6/20–9/3
+                  tr.country-entry
+                    td.country-entry-name Beginnings
+                    td.country-entry-venue Anspacher Theater
+                    td.country-entry-start-date 5/13–20/8
+                  tr.country-entry
+                    td.country-entry-name Pinnochio
+                    td.country-entry-venue Belasco Theatre
+                    td.country-entry-start-date 4/10–10-4
+                  tr.country-entry
+                    td.country-entry-name The Majority
+                    td.country-entry-venue New Amsterdam Theatre
+                    td.country-entry-start-date 5/20–9/15
+        tr.country-city
+          td Los Angeles
+        tr.country-city
+          td Chicago
+        tr.country-city
+          td Houston
+        tr.country-city
+          td Phoenix
+        tr.country-city
+          td Philadelphia
+        tr.country-city
+          td San Antonio
+        tr.country-city
+          td San Diego
 
 .col-details.hidden
   .details

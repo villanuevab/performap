@@ -127,7 +127,7 @@ $box-margin: 10px;
     .tablesorter {
       @include tablesorter-theme($color-country-box-background);
 
-      td.country-city {}
+      tr.country-city { text-transform: uppercase; }
     }
 
     .country-title { @extend %cell-heading; }

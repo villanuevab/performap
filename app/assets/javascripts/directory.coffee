@@ -33,19 +33,19 @@ $ ->
     false
 
   # show entries for city in country column
-  $('a.link-country-city-expand').click ->
-    entries = $(this).next '.country-city-entries'
-    selected_cell = $(this).children '.country-city'
-    if entries.css('display') == 'none'
-      entries.slideDown 'slow'
-      selected_cell.addClass 'selected'
-    else
-      entries.slideUp 'slow'
-      selected_cell.removeClass 'selected'
-    false
+  # $('a.link-country-city-expand').click ->
+  #   entries = $(this).parent().parent().next('tr.secondary-table').find 'td .secondary-table-wrapper'
+  #   selected_cell = $(this).parent()
+  #   if entries.css('display') == 'none'
+  #     entries.slideDown 'slow'
+  #     selected_cell.addClass 'selected'
+  #   else
+  #     entries.slideUp 'slow'
+  #     selected_cell.removeClass 'selected'
+  #   false
 
   $('a.link-country-city-entry-details').click ->
-    selected_cell = $(this).children '.country-entry'
+    selected_cell = $(this).parent()
     if $('.col-details').hasClass 'hidden'
       selected_cell.addClass 'selected'
       $('.col-details').removeClass 'hidden'
@@ -63,5 +63,18 @@ $ ->
         selected_cell.removeClass 'selected'
     false
 
-  $('#country-table').tablesorter()
-  $('#myTable').tablesorter()
+  $('#country-table').tablesorter
+    cssChildRow: 'tablesorter-childRow'
+  $('.tablesorter').delegate '.toggle', 'click', ->
+    $(this).parent().toggleClass 'selected'
+    $(this).closest('tr').nextUntil('tr:not(.tablesorter-childRow)').each ->
+      if $(this).children('td').css('display') == 'none'
+        $(this).children('td').show()
+        $(this).find('td .secondary-table-wrapper').slideDown 'slow'
+        $(this).find('table').tablesorter()
+      else
+        $(this).find('td .secondary-table-wrapper').slideUp 'slow', ->
+          $(this).parent().hide()
+    false
+  $('.tablesorter-childRow td .secondary-table-wrapper').hide()
+  $('.tablesorter-childRow > td').hide()
