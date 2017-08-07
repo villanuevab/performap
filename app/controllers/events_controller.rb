@@ -4,4 +4,7 @@ class EventsController < ApplicationController
 
   def new
   end
+
+  def tablesort
+  end
 end

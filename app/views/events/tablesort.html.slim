@@ -92,10 +92,9 @@ h1 Performap
                     th Date
                 tbody
                   tr.country-entry
-                    = link_to root_path, class: "link-country-city-entry-details" do
-                      td.country-entry-name Hamlet
-                      td.country-entry-venue Public Theater
-                      td.country-entry-start-date 6/20–9/3
+                    td.country-entry-name = link_to "Hamlet", root_path, class: "link-country-city-entry-details"
+                    td.country-entry-venue = link_to "Public Theater", root_path, class: "link-country-city-entry-details"
+                    td.country-entry-start-date = link_to "6/20–9/3", root_path, class: "link-country-city-entry-details"
                   tr.country-entry
                     td.country-entry-name Beginnings
                     td.country-entry-venue Anspacher Theater

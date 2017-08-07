@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root 'events#index'
+  get 'welcome/index'
+
+  root 'events#tablesort'
 
   resources :events
-
-  get '/tablesort', to: 'events#tablesort', :as => 'tablesort'
 end
