@@ -1,0 +1,66 @@
+p
+  = f.label :name, class: "required"
+  br
+  = f.text_field :name, required: true
+
+p
+  = f.label :presenter
+  br
+  = f.text_field :presenter
+
+p
+  = f.label :city, class: "required"
+  br
+  = f.text_field :city, required: true
+
+p
+  = f.label :state
+  br
+  = f.text_field :state
+
+p
+  = f.label :country, class: "required"
+  br
+  = f.text_field :country, required: true
+
+p
+  = f.label :start_date, class: "required"
+  br
+  = f.date_select :start_date, required: true
+
+p
+  = f.label :end_date
+  br
+  = f.date_select :end_date, { prompt: true }
+
+p
+  = f.label :description
+  br
+  = f.text_area :description
+
+p
+  = f.label :website
+  br
+  = f.text_field :website
+
+p
+  = f.label :facebook
+  br
+  = f.text_field :facebook
+
+p
+  = f.label :instagram, "Instagram Username"
+  br
+  = f.text_field :instagram
+
+p
+  = f.label :twitter, "Twitter Username"
+  br
+  = f.text_field :twitter
+
+p
+  = f.label :youtube
+  br
+  = f.text_field :youtube
+
+p = f.submit

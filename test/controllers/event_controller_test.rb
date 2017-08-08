@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DirectoryControllerTest < ActionDispatch::IntegrationTest
+class EventControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

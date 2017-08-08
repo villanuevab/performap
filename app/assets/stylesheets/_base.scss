@@ -20,11 +20,21 @@ html, body {
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 { margin-top: 0; }
-
-a, a:link, a:hover, a:visited {
-  color: #000000;
-  text-decoration: none;
+%static-link {
+  a, a:link, a:visited, a:hover {
+    color: #000;
+    text-decoration: none;
+  }
 }
+
+h1, h2, h3, h4, h5, h6 {
+  @extend %static-link;
+  margin-top: 0;
+}
+
+a, a:link, a:visited { color: grey; }
+a:hover { color: #000; }
+
+table { @extend %static-link; }
 
 .hidden { display: none; }

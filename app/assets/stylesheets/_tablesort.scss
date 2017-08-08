@@ -120,7 +120,7 @@ $sortDescWhite : url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEAL
   background-image: $sortDescBlack;
 }
 
-@mixin tablesorter-theme($background-color) {
+@mixin tablesorter-theme($background-color: transparent) {
   background-color: $background-color;
   width: 100%;
   text-align: left;
@@ -189,7 +189,7 @@ $sortDescWhite : url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEAL
       border: $overallBorder;
       border-width: 1px 0 0 0;
 
-      a {
+      a, a:hover {
         display: block;
         width: 100%;
       }

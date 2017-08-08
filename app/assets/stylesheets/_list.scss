@@ -29,10 +29,14 @@ $box-margin: 10px;
   margin-right: $box-margin;
   display: inline-block;
   vertical-align: top;
+
+  a { display: block; }
 }
 
 @mixin col($width) {
   @extend %col-format;
+  @extend %static-link;
+
   width: $width;
 }
 
@@ -166,6 +170,7 @@ $box-margin: 10px;
 
 .col-details {
   @include col($col-details-width-full);
+
   margin-right: 0;
 
   .details {

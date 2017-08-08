@@ -32,18 +32,6 @@ $ ->
         selected_cell.removeClass 'selected'
     false
 
-  # show entries for city in country column
-  # $('a.link-country-city-expand').click ->
-  #   entries = $(this).parent().parent().next('tr.secondary-table').find 'td .secondary-table-wrapper'
-  #   selected_cell = $(this).parent()
-  #   if entries.css('display') == 'none'
-  #     entries.slideDown 'slow'
-  #     selected_cell.addClass 'selected'
-  #   else
-  #     entries.slideUp 'slow'
-  #     selected_cell.removeClass 'selected'
-  #   false
-
   $('a.link-country-city-entry-details').click ->
     selected_cell = $(this).parent()
     if $('.col-details').hasClass 'hidden'
