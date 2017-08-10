@@ -30,6 +30,7 @@ class EventsController < ApplicationController
   def tablesort
     @events = Event.all
     gon.events = Event.all
+    gon.citiesByCountry = Event.citiesByCountry
   end
 
   private

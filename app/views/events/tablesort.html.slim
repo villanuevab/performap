@@ -1,4 +1,3 @@
-= console
 .col-menu
   .directory-main
     = link_to root_path, class: "link-latest" do
@@ -26,9 +25,10 @@
     .latest-title Latest
     .latest-entries
       - @events.recent.each do |e|
-        .latest-entry
-          .latest-entry-name = e.name
-          .latest-entry-city = e.city
+        = link_to "#", class: "link-entry-details" do
+          .latest-entry data-entry-id="#{e.id}"
+            .latest-entry-name = e.name
+            .latest-entry-city = e.city
 
 .col-country.hidden
   .country
@@ -50,9 +50,9 @@
                     th Date
                 tbody
                   tr.country-entry
-                    td.country-entry-name = link_to "Hamlet", root_path, class: "link-country-city-entry-details"
-                    td.country-entry-venue = link_to "Public Theater", root_path, class: "link-country-city-entry-details"
-                    td.country-entry-start-date = link_to "6/20–9/3", root_path, class: "link-country-city-entry-details"
+                    td.country-entry-name = link_to "Hamlet", root_path, class: "link-entry-details"
+                    td.country-entry-venue = link_to "Public Theater", root_path, class: "link-entry-details"
+                    td.country-entry-start-date = link_to "6/20–9/3", root_path, class: "link-entry-details"
                   tr.country-entry
                     td.country-entry-name Beginnings
                     td.country-entry-venue Anspacher Theater
@@ -81,13 +81,6 @@
           td San Diego
 
 .col-details.hidden
-  .details
-    .details-title Hamlet
+  .details data-entry-id="-1"
+    .details-title
     .details-entry
-      p Public Theater, Anspacher Theater 6/20–9/3
-      p Tickets: 75$–120$
-      p Oscar Isaac (Star Wars: The Force Awakens, Romeo and Juliet) returns to The Public in this electrifyingly intimate new production of Shakespeare’s eternal drama. Isaac is the Prince caught between thought and action, anger and anguish, as his uncle assumes the throne left vacant by his murdered father. As the dead King calls to him from the grave, demanding to be avenged, Hamlet is forced to choose between bearing the oppressor’s wrong or taking arms against a sea of troubles.
-      p Tony Award winner Sam Gold (Fun Home, Othello) directs theater’s most powerful tragedy about life and death, madness and conscience, and corruption—of the state and of the soul.
-      p HAMLET is made possible by the generous support of Luigi Caiola & Sean McGill and Susan & David Edelstein.
-      p This program is supported as part of the Dutch Culture USA program by the Consulate General of the Netherlands in New York.
-      p MORE DETAILS...

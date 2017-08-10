@@ -37,4 +37,4 @@ a:hover { color: #000; }
 
 table { @extend %static-link; }
 
-.hidden { display: none; }
+.hidden { display: none !important; }
