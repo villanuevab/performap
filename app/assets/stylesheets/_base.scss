@@ -38,3 +38,11 @@ a:hover { color: #000; }
 table { @extend %static-link; }
 
 .hidden { display: none !important; }
+
+@mixin darken-background($background-color) {
+  background-color: darken($background-color, 10%);
+}
+
+@mixin darken-background-on-hover($background-color) {
+  &:hover { @include darken-background($background-color); }
+}

@@ -1,9 +1,6 @@
 $ ->
-  if gon
-    events = gon.events
-
   getEventById = (eventId) ->
-    events.find (el) ->
+    gon.events.find (el) ->
       el.id is eventId
 
   $('a.link-latest').click ->
@@ -29,7 +26,17 @@ $ ->
   # show country column after clicking on country from directory
   $('a.link-country').click ->
     selected_cell = $(this).children '.directory-entry'
+    country = $(this).attr('data-country')
     if $('.col-country').hasClass 'hidden'
+      $('#country-table thead th').text country
+
+      tbody = $('#country-table tbody')
+      tbody.empty()
+      gon.citiesByCountry[country].forEach (city) ->
+        tbody.append '<tr class="country-city"><td>' + city + "</td></tr>"
+        return
+      $('#country-table').trigger 'update'
+
       selected_cell.addClass 'selected'
       $('.col-country').removeClass 'hidden'
       $('.country').slideDown 'slow'
@@ -60,13 +67,14 @@ $ ->
   $('a.link-entry-details .latest-entry').click ->
     entry_id = $(this).data 'entry-id'
     event = getEventById entry_id
+    selected_cell = $(this)
 
     if $('.col-details').hasClass 'hidden'
       $('.details').attr 'data-entry-id', entry_id
       $('.details-title').text event.name
       $('.details-entry').text event.description
 
-      #selected_cell.addClass 'selected'
+      selected_cell.addClass 'selected'
       $('.col-details').removeClass 'hidden'
       $('.details').slideDown 'slow'
 
@@ -77,27 +85,31 @@ $ ->
 
       #$('.latest-entries').hide 'slow'
     else if +$('.details').attr('data-entry-id') isnt entry_id
+      $('.latest-entry.selected').removeClass 'selected'
+
       $('.details').attr 'data-entry-id', entry_id
       $('.details-title').text event.name
       $('.details-entry').text event.description
+      selected_cell.addClass 'selected'
     else
+      selected_cell.removeClass 'selected'
       $('.details').slideUp 'slow', ->
-        #selected_cell.removeClass 'selected'
         $('.col-details').addClass 'hidden'
     false
 
-  $('#country-table').tablesorter
-    cssChildRow: 'tablesorter-childRow'
-  $('.tablesorter').delegate '.toggle', 'click', ->
-    $(this).parent().toggleClass 'selected'
-    $(this).closest('tr').nextUntil('tr:not(.tablesorter-childRow)').each ->
-      if $(this).children('td').css('display') isnt 'none'
-        $(this).children('td').show()
-        $(this).find('td .secondary-table-wrapper').slideDown 'slow'
-        $(this).find('table').tablesorter()
-      else
-        $(this).find('td .secondary-table-wrapper').slideUp 'slow', ->
-          $(this).parent().hide()
-    false
-  $('.tablesorter-childRow td .secondary-table-wrapper').hide()
-  $('.tablesorter-childRow > td').hide()
+  $('#country-table').tablesorter()
+  # $('#country-table').tablesorter
+  #   cssChildRow: 'tablesorter-childRow'
+  # $('.tablesorter').delegate '.toggle', 'click', ->
+  #   $(this).parent().toggleClass 'selected'
+  #   $(this).closest('tr').nextUntil('tr:not(.tablesorter-childRow)').each ->
+  #     if $(this).children('td').css('display') isnt 'none'
+  #       $(this).children('td').show()
+  #       $(this).find('td .secondary-table-wrapper').slideDown 'slow'
+  #       $(this).find('table').tablesorter()
+  #     else
+  #       $(this).find('td .secondary-table-wrapper').slideUp 'slow', ->
+  #         $(this).parent().hide()
+  #   false
+  # $('.tablesorter-childRow td .secondary-table-wrapper').hide()
+  # $('.tablesorter-childRow > td').hide()

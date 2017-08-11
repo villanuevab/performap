@@ -10,5 +10,6 @@ class Event < ApplicationRecord
     self.countries.each do |c|
       citiesByCountry[c] = self.recent.cities_in_country(c)
     end
+    citiesByCountry
   end
 end

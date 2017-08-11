@@ -15,16 +15,6 @@ $col-details-width-full: 500px;
 
 $box-margin: 10px;
 
-@mixin darken-cell($background-color) {
-  background-color: darken($background-color, 10%);
-}
-
-@mixin darken-background-on-hover($background-color) {
-  &:hover {
-    @include darken-cell($background-color);
-  }
-}
-
 %col-format {
   margin-right: $box-margin;
   display: inline-block;
@@ -75,7 +65,7 @@ $box-margin: 10px;
 
         border-top: 1px solid #ffffff;
 
-        &.selected { @include darken-cell($color-directory-main-box-background); }
+        &.selected { @include darken-background($color-directory-main-box-background); }
       }
     }
   }
@@ -95,6 +85,7 @@ $box-margin: 10px;
 
 .col-latest {
   @extend %col-format;
+  @extend %static-link;
 
   .latest {
     display: none;
@@ -110,8 +101,11 @@ $box-margin: 10px;
 
       .latest-entry {
         @extend %cell-entry;
+        @include darken-background-on-hover($color-latest-box-background);
 
         border-top: 1px solid #ffffff;
+
+        &.selected { @include darken-background($color-latest-box-background); }
 
         .latest-entry-name, .latest-entry-city { display: inline-block; }
         .latest-entry-name { width: 60%; }
@@ -144,7 +138,7 @@ $box-margin: 10px;
         border-top: 1px solid #ffffff;
         text-transform: uppercase;
 
-        &.selected { @include darken-cell($color-country-box-background); }
+        &.selected { @include darken-background($color-country-box-background); }
       }
 
       .country-city-entries {
@@ -156,7 +150,7 @@ $box-margin: 10px;
 
           border-top: 1px solid #ffffff;
 
-          &.selected { @include darken-cell($color-country-box-background); }
+          &.selected { @include darken-background($color-country-box-background); }
 
           .country-entry-name, .country-entry-venue, .country-entry-start-date { display: inline-block; }
           .country-entry-name { width: 40%; }

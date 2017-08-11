@@ -5,7 +5,7 @@
     .directory-entries
       .directory-subtitle Country
       - @events.countries.each do |country|
-        = link_to root_path, class: "link-country" do
+        = link_to root_path, class: "link-country", data: { :country => country } do
           .directory-entry = country
 
       .directory-subtitle &nbsp;
@@ -35,50 +35,38 @@
     table#country-table.tablesorter
       thead
         tr
-          th USA
+          th
       tbody
-        tr.country-city
-          td = link_to "New York City", "#", class: "toggle"
-        tr.tablesorter-childRow.secondary-table
+        tr
           td
-            div.secondary-table-wrapper
-              table#country-city-table.tablesorter
-                thead
-                  tr
-                    th Name
-                    th Venue
-                    th Date
-                tbody
-                  tr.country-entry
-                    td.country-entry-name = link_to "Hamlet", root_path, class: "link-entry-details"
-                    td.country-entry-venue = link_to "Public Theater", root_path, class: "link-entry-details"
-                    td.country-entry-start-date = link_to "6/20–9/3", root_path, class: "link-entry-details"
-                  tr.country-entry
-                    td.country-entry-name Beginnings
-                    td.country-entry-venue Anspacher Theater
-                    td.country-entry-start-date 5/13–20/8
-                  tr.country-entry
-                    td.country-entry-name Pinnochio
-                    td.country-entry-venue Belasco Theatre
-                    td.country-entry-start-date 4/10–10-4
-                  tr.country-entry
-                    td.country-entry-name The Majority
-                    td.country-entry-venue New Amsterdam Theatre
-                    td.country-entry-start-date 5/20–9/15
-        tr.country-city
-          td Los Angeles
-        tr.country-city
-          td Chicago
-        tr.country-city
-          td Houston
-        tr.country-city
-          td Phoenix
-        tr.country-city
-          td Philadelphia
-        tr.country-city
-          td San Antonio
-        tr.country-city
-          td San Diego
+        / tr.country-city
+        /   td = link_to "New York City", "#", class: "toggle"
+        / tr.tablesorter-childRow.secondary-table
+        /   td
+        /     div.secondary-table-wrapper
+        /       table#country-city-table.tablesorter
+        /         thead
+        /           tr
+        /             th Name
+        /             th Venue
+        /             th Date
+        /         tbody
+        /           tr.country-entry
+        /             td.country-entry-name = link_to "Hamlet", root_path, class: "link-entry-details"
+        /             td.country-entry-venue = link_to "Public Theater", root_path, class: "link-entry-details"
+        /             td.country-entry-start-date = link_to "6/20–9/3", root_path, class: "link-entry-details"
+        /           tr.country-entry
+        /             td.country-entry-name Beginnings
+        /             td.country-entry-venue Anspacher Theater
+        /             td.country-entry-start-date 5/13–20/8
+        /           tr.country-entry
+        /             td.country-entry-name Pinnochio
+        /             td.country-entry-venue Belasco Theatre
+        /             td.country-entry-start-date 4/10–10-4
+        /           tr.country-entry
+        /             td.country-entry-name The Majority
+        /             td.country-entry-venue New Amsterdam Theatre
+        /             td.country-entry-start-date 5/20–9/15
 
 .col-details.hidden
   .details data-entry-id="-1"
