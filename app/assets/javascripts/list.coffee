@@ -23,23 +23,31 @@ $ ->
         $(this).removeClass 'selected'
     false
 
+  updateCountryTable = (country) ->
+    $('#country-table thead th').text country
+
+    tbody = $('#country-table tbody')
+    tbody.empty()
+    gon.citiesByCountry[country].forEach (city) ->
+      tbody.append '<tr class="country-city"><td><a href="#" class="toggle" data-city="' + city + '">' + city + '</a></td></tr>'
+      return
+    $('#country-table').trigger 'update'
+
   # show country column after clicking on country from directory
   $('a.link-country').click ->
     selected_cell = $(this).children '.directory-entry'
     country = $(this).attr('data-country')
     if $('.col-country').hasClass 'hidden'
-      $('#country-table thead th').text country
-
-      tbody = $('#country-table tbody')
-      tbody.empty()
-      gon.citiesByCountry[country].forEach (city) ->
-        tbody.append '<tr class="country-city"><td>' + city + "</td></tr>"
-        return
-      $('#country-table').trigger 'update'
+      updateCountryTable country
 
       selected_cell.addClass 'selected'
       $('.col-country').removeClass 'hidden'
       $('.country').slideDown 'slow'
+    else if $('#country-table thead th').text isnt country
+      updateCountryTable country
+
+      $('.directory-entry.selected').removeClass 'selected'
+      selected_cell.addClass 'selected'
     else
       $('.country').slideUp 'slow', ->
         $('.col-country').addClass 'hidden'
