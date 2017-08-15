@@ -144,7 +144,7 @@ $box-margin: 10px;
       .country-city-entries {
         display: none;
 
-        .country-entry {
+        .city-entry {
           @extend %cell-entry-indented;
           @include darken-background-on-hover($color-country-box-background);
 
@@ -152,10 +152,10 @@ $box-margin: 10px;
 
           &.selected { @include darken-background($color-country-box-background); }
 
-          .country-entry-name, .country-entry-venue, .country-entry-start-date { display: inline-block; }
-          .country-entry-name { width: 40%; }
-          .country-entry-venue { width: 40%; }
-          .country-entry-start-date { width: 20%; }
+          .city-entry-name, .city-entry-venue, .city-entry-start-date { display: inline-block; }
+          .city-entry-name { width: 40%; }
+          .city-entry-venue { width: 40%; }
+          .city-entry-start-date { width: 20%; }
         }
       }
     }

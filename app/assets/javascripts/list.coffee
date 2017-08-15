@@ -23,6 +23,24 @@ $ ->
         $(this).removeClass 'selected'
     false
 
+  createEventEntry = (event) ->
+    trHtml = '<tr class="city-entry">'
+    trHtml += '<td class="city-entry-name"><a href="#" class="link-entry-details" data-event-id="' + event.id + '">' + event.name + '</a></td>'
+    trHtml += '<td class="city-entry-venue"><a href="#" class="link-entry-details" data-event-id="' + event.id + '">' + event.presenter + '</a></td>'
+    trHtml += '<td class="city-entry-start-date"><a href="#" class="link-entry-details" data-event-id="' + event.id + '">' + event.start_date + '</a></td>'
+    trHtml += '</tr>'
+    trHtml
+
+  createEventsTableForCity = (city) ->
+    tableHtml = '<tr class="tablesorter-childRow secondary-table-row"><td><div class="secondary-table-wrapper"><table class="secondary-table tablesorter"><thead><tr><th>Name</th><th>Venue</th><th>Date</th><tbody>'
+    eventsForCity = gon.events.filter (event) ->
+      return event.city == city
+    eventsForCity.forEach (event) ->
+      tableHtml += createEventEntry(event)
+    tableHtml += '</tbody></table></div></td></tr>'
+    tableHtml
+
+  # renders table of cities for a given country
   updateCountryTable = (country) ->
     $('#country-table thead th').text country
 
@@ -30,8 +48,11 @@ $ ->
     tbody.empty()
     gon.citiesByCountry[country].forEach (city) ->
       tbody.append '<tr class="country-city"><td><a href="#" class="toggle" data-city="' + city + '">' + city + '</a></td></tr>'
+      tbody.append createEventsTableForCity(city)
       return
     $('#country-table').trigger 'update'
+    $('.tablesorter-childRow td .secondary-table-wrapper').hide()
+    $('.tablesorter-childRow > td').hide()
 
   # show country column after clicking on country from directory
   $('a.link-country').click ->
@@ -54,31 +75,13 @@ $ ->
         selected_cell.removeClass 'selected'
     false
 
-  # $('a.link-entry-details').click ->
-  #   selected_cell = $(this).parent()
-  #   if $('.col-details').hasClass 'hidden'
-  #     selected_cell.addClass 'selected'
-  #     $('.details').slideDown 'slow'
-
-  #     col_latest_height = $('.col-latest').height()
-  #     $('.latest').animate {
-  #       height: col_latest_height,
-  #     }, 'slow'
-
-  #     $('.latest-entries').hide 'slow'
-  #   else
-  #     $('.details').slideUp 'slow', ->
-  #       selected_cell.removeClass 'selected'
-  #       $('.col-details').addClass 'hidden'
-  #   false
-
   $('a.link-entry-details .latest-entry').click ->
-    entry_id = $(this).data 'entry-id'
-    event = getEventById entry_id
+    event_id = $(this).data 'event-id'
+    event = getEventById event_id
     selected_cell = $(this)
 
     if $('.col-details').hasClass 'hidden'
-      $('.details').attr 'data-entry-id', entry_id
+      $('.details').attr 'data-event-id', event_id
       $('.details-title').text event.name
       $('.details-entry').text event.description
 
@@ -92,10 +95,10 @@ $ ->
       }, 'slow'
 
       #$('.latest-entries').hide 'slow'
-    else if +$('.details').attr('data-entry-id') isnt entry_id
+    else if +$('.details').attr('data-event-id') isnt event_id
       $('.latest-entry.selected').removeClass 'selected'
 
-      $('.details').attr 'data-entry-id', entry_id
+      $('.details').attr 'data-event-id', event_id
       $('.details-title').text event.name
       $('.details-entry').text event.description
       selected_cell.addClass 'selected'
@@ -105,19 +108,16 @@ $ ->
         $('.col-details').addClass 'hidden'
     false
 
-  $('#country-table').tablesorter()
-  # $('#country-table').tablesorter
-  #   cssChildRow: 'tablesorter-childRow'
-  # $('.tablesorter').delegate '.toggle', 'click', ->
-  #   $(this).parent().toggleClass 'selected'
-  #   $(this).closest('tr').nextUntil('tr:not(.tablesorter-childRow)').each ->
-  #     if $(this).children('td').css('display') isnt 'none'
-  #       $(this).children('td').show()
-  #       $(this).find('td .secondary-table-wrapper').slideDown 'slow'
-  #       $(this).find('table').tablesorter()
-  #     else
-  #       $(this).find('td .secondary-table-wrapper').slideUp 'slow', ->
-  #         $(this).parent().hide()
-  #   false
-  # $('.tablesorter-childRow td .secondary-table-wrapper').hide()
-  # $('.tablesorter-childRow > td').hide()
+  $('#country-table').tablesorter
+    cssChildRow: 'tablesorter-childRow'
+  $('.tablesorter').delegate '.toggle', 'click', ->
+    $(this).parent().toggleClass 'selected'
+    $(this).closest('tr').nextUntil('tr:not(.tablesorter-childRow)').each ->
+      if $(this).children('td').css('display') is 'none'
+        $(this).children('td').show()
+        $(this).find('td .secondary-table-wrapper').slideDown 'slow'
+        $(this).find('table').tablesorter()
+      else
+        $(this).find('td .secondary-table-wrapper').slideUp 'slow', ->
+          $(this).parent().hide()
+    false

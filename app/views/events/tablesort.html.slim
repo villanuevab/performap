@@ -26,7 +26,7 @@
     .latest-entries
       - @events.recent.each do |e|
         = link_to "#", class: "link-entry-details" do
-          .latest-entry data-entry-id="#{e.id}"
+          .latest-entry data-event-id="#{e.id}"
             .latest-entry-name = e.name
             .latest-entry-city = e.city
 
@@ -39,34 +39,6 @@
       tbody
         tr
           td
-        / tr.country-city
-        /   td = link_to "New York City", "#", class: "toggle"
-        / tr.tablesorter-childRow.secondary-table
-        /   td
-        /     div.secondary-table-wrapper
-        /       table#country-city-table.tablesorter
-        /         thead
-        /           tr
-        /             th Name
-        /             th Venue
-        /             th Date
-        /         tbody
-        /           tr.country-entry
-        /             td.country-entry-name = link_to "Hamlet", root_path, class: "link-entry-details"
-        /             td.country-entry-venue = link_to "Public Theater", root_path, class: "link-entry-details"
-        /             td.country-entry-start-date = link_to "6/20–9/3", root_path, class: "link-entry-details"
-        /           tr.country-entry
-        /             td.country-entry-name Beginnings
-        /             td.country-entry-venue Anspacher Theater
-        /             td.country-entry-start-date 5/13–20/8
-        /           tr.country-entry
-        /             td.country-entry-name Pinnochio
-        /             td.country-entry-venue Belasco Theatre
-        /             td.country-entry-start-date 4/10–10-4
-        /           tr.country-entry
-        /             td.country-entry-name The Majority
-        /             td.country-entry-venue New Amsterdam Theatre
-        /             td.country-entry-start-date 5/20–9/15
 
 .col-details.hidden
   .details data-entry-id="-1"
