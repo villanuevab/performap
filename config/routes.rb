@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  root 'directory#index'
+  get 'welcome/index'
+
+  root 'events#tablesort'
+
+  resources :events
 end

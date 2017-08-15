@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  presenter: MyText
+  city: MyText
+  state: MyText
+  country: MyText
+  start_date: 2017-08-07
+  end_date: 2017-08-07
+  description: MyText
+  website: MyText
+  facebook: MyText
+  instagram: MyText
+  twitter: MyText
+  youtube: MyText
+
+two:
+  name: MyText
+  presenter: MyText
+  city: MyText
+  state: MyText
+  country: MyText
+  start_date: 2017-08-07
+  end_date: 2017-08-07
+  description: MyText
+  website: MyText
+  facebook: MyText
+  instagram: MyText
+  twitter: MyText
+  youtube: MyText

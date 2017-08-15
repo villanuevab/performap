@@ -12,9 +12,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'gon'
 gem 'jquery-rails'
 gem 'slim-rails'
+gem 'jquery-tablesorter'
 
 # Password encryption
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -24,5 +25,5 @@ end
 group :development do
   gem 'web-console'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'listen'
 end

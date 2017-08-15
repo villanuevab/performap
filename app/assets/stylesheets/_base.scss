@@ -1,0 +1,48 @@
+$color-almond: #EDD6C2;
+$color-aths-special: #E8E5C3;
+$color-surf-crest: #D1E4D4;
+$color-spindle: #C5DDF0;
+$color-perfume: #ECCDFB;
+
+$font-family-text: "Roboto", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+
+html, body {
+  font-family: $font-family-text;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+%static-link {
+  a, a:link, a:visited, a:hover {
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @extend %static-link;
+  margin-top: 0;
+}
+
+a, a:link, a:visited { color: grey; }
+a:hover { color: #000; }
+
+table { @extend %static-link; }
+
+.hidden { display: none !important; }
+
+@mixin darken-background($background-color) {
+  background-color: darken($background-color, 10%);
+}
+
+@mixin darken-background-on-hover($background-color) {
+  &:hover { @include darken-background($background-color); }
+}

@@ -1,0 +1,56 @@
+$field-height: 44px;
+$field-padding: 7px 12px;
+$field-border: 1px solid lightgrey;
+$field-border-radius: 4px;
+$field-background-color: #ffffff;
+
+$button-color: $color-perfume;
+
+form {
+  max-width: 600px;
+}
+
+input, textarea, select {
+  background-color: $field-background-color;
+  border: $field-border;
+  border-radius: $field-border-radius;
+  padding: $field-padding;
+}
+
+input, textarea {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+input[type="submit"], button {
+  background-color: $button-color;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  padding: .7em 1.2em;
+  border-radius: $field-border-radius;
+  border: 1px solid transparent;
+
+  &:hover {
+    background-color: darken($button-color, 10%);
+    text-decoration: none;
+  }
+
+  &:focus { color: darken($button-color, 10%); }
+}
+
+label {
+  margin-bottom: 5px;
+
+  &.required {
+    position: relative;
+
+    &:after {
+      position: absolute;
+      right: -10px;
+      content: "*";
+      color: $color-perfume;
+    }
+  }
+}

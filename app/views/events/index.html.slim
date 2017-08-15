@@ -1,0 +1,50 @@
+p = link_to "Add New Event", new_event_path
+
+h3 List of Events
+
+table.tablesorter#events-index
+  thead
+    tr
+      th Name
+      th Presenter
+      th City
+      th State
+      th Country
+      th Start Date
+      th.sorter-false End Date
+      th.sorter-false Description
+      th.sorter-false Website
+      th.sorter-false Facebook
+      th.sorter-false Instagram
+      th.sorter-false Twitter
+      th.sorter-false Youtube
+      th Last Updated
+      th.sorter-false
+  tbody
+    - @events.each do |e|
+      tr
+        td = e.name
+        td = e.presenter
+        td = e.city
+        td = e.state
+        td = e.country
+        td = e.start_date
+        td = e.end_date
+        td = e.description
+        td
+          - unless e.website.blank?
+            = link_to "#{e.website}", e.website
+        td
+          - unless e.facebook.blank?
+            = link_to "Link to FB", e.facebook
+        td
+          - unless e.instagram.blank?
+            = link_to "@#{e.instagram}", instagram_link(e.instagram)
+        td
+          - unless e.twitter.blank?
+            = link_to "@#{e.twitter}", twitter_link(e.twitter)
+        td
+          - unless e.youtube.blank?
+            = link_to "Link to YT", e.youtube
+        td = e.updated_at
+        td = link_to "Edit", edit_event_path(e)

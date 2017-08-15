@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Performap</title>
+    <%= include_gon %>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -11,6 +12,7 @@
 
   <body>
     <div class="container">
+      <h1><%= link_to "Performap", root_path %></h1>
       <%= yield %>
     </div>
   </body>

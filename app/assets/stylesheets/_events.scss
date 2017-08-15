@@ -1,0 +1,16 @@
+.tablesorter#events-index {
+  @include tablesorter-theme;
+
+  thead th { font-weight: 700; }
+
+  tbody td {
+    hyphens: auto;
+
+    a {
+      color: grey;
+      text-decoration: underline;
+
+      &:hover { color: #000000; }
+    }
+  }
+}
