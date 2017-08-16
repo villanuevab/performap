@@ -140,24 +140,16 @@ $box-margin: 10px;
 
         &.selected { @include darken-background($color-country-box-background); }
       }
+    }
 
-      .country-city-entries {
-        display: none;
+    .city-entry {
+      @include darken-background-on-hover($color-country-box-background);
 
-        .city-entry {
-          @extend %cell-entry-indented;
-          @include darken-background-on-hover($color-country-box-background);
+      &.selected { @include darken-background($color-country-box-background); }
 
-          border-top: 1px solid #ffffff;
-
-          &.selected { @include darken-background($color-country-box-background); }
-
-          .city-entry-name, .city-entry-venue, .city-entry-start-date { display: inline-block; }
-          .city-entry-name { width: 40%; }
-          .city-entry-venue { width: 40%; }
-          .city-entry-start-date { width: 20%; }
-        }
-      }
+      .city-entry-name { width: 40%; }
+      .city-entry-venue { width: 40%; }
+      .city-entry-start-date { width: 20%; }
     }
   }
 }

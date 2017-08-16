@@ -194,7 +194,7 @@ $sortDescWhite : url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEAL
         width: 100%;
       }
 
-      &.selected { @include hovered($background-color); }
+      &.selected { @include darken-background($background-color); }
     }
 
     tr.secondary-table-row > td {
@@ -235,7 +235,7 @@ $sortDescWhite : url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEAL
     @include hovered($background-color);
   }
 
-  tbody > tr.tablesorter-childRow table tbody tr td { background-color: $background-color; }
+  tbody > tr.tablesorter-childRow table tbody tr td { background-color: transparent; }
   tbody > tr.tablesorter-childRow table tbody tr:hover td { @include hovered($background-color); }
 
   /* table processing indicator - indeterminate spinner */

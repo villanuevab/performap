@@ -24,7 +24,7 @@ $ ->
     false
 
   createEventEntry = (event) ->
-    trHtml = '<tr class="city-entry">'
+    trHtml = '<tr class="city-entry" data-event-id="' + event.id + '">'
     trHtml += '<td class="city-entry-name"><a href="#" class="link-entry-details" data-event-id="' + event.id + '">' + event.name + '</a></td>'
     trHtml += '<td class="city-entry-venue"><a href="#" class="link-entry-details" data-event-id="' + event.id + '">' + event.presenter + '</a></td>'
     trHtml += '<td class="city-entry-start-date"><a href="#" class="link-entry-details" data-event-id="' + event.id + '">' + event.start_date + '</a></td>'
@@ -75,7 +75,35 @@ $ ->
         selected_cell.removeClass 'selected'
     false
 
+  # show details from event clicked from latest column
   $('a.link-entry-details .latest-entry').click ->
+    event_id = $(this).data 'event-id'
+    event = getEventById event_id
+    selected_cell = $(this)
+
+    if $('.col-details').hasClass 'hidden'
+      $('.details').attr 'data-event-id', event_id
+      $('.details-title').text event.name
+      $('.details-entry').text event.description
+
+      selected_cell.addClass 'selected'
+      $('.col-details').removeClass 'hidden'
+      $('.details').slideDown 'slow'
+
+    else if +$('.details').attr('data-event-id') isnt event_id
+      $('.latest-entry.selected').removeClass 'selected'
+
+      $('.details').attr 'data-event-id', event_id
+      $('.details-title').text event.name
+      $('.details-entry').text event.description
+      selected_cell.addClass 'selected'
+    else
+      selected_cell.removeClass 'selected'
+      $('.details').slideUp 'slow', ->
+        $('.col-details').addClass 'hidden'
+    false
+
+  $('#country-table').on 'click', '.city-entry', ->
     event_id = $(this).data 'event-id'
     event = getEventById event_id
     selected_cell = $(this)
@@ -94,9 +122,9 @@ $ ->
         height: col_latest_height,
       }, 'slow'
 
-      #$('.latest-entries').hide 'slow'
+      $('.latest-entries').hide 'slow'
     else if +$('.details').attr('data-event-id') isnt event_id
-      $('.latest-entry.selected').removeClass 'selected'
+      $('.city-entry.selected').removeClass 'selected'
 
       $('.details').attr 'data-event-id', event_id
       $('.details-title').text event.name
