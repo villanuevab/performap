@@ -64,7 +64,7 @@ $ ->
       selected_cell.addClass 'selected'
       $('.col-country').removeClass 'hidden'
       $('.country').slideDown 'slow'
-    else if $('#country-table thead th').text isnt country
+    else if document.querySelector('#country-table thead tr th').textContent isnt country
       updateCountryTable country
 
       $('.directory-entry.selected').removeClass 'selected'
