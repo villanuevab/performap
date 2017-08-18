@@ -1,8 +1,10 @@
 $ ->
+  # retrieve info about event
   getEventById = (eventId) ->
     gon.events.find (el) ->
       el.id is eventId
 
+  # open details column for event from latest column
   $('a.link-latest').click ->
     if $('.col-latest').hasClass 'hidden'
       $('.col-latest').removeClass 'hidden'
@@ -103,11 +105,20 @@ $ ->
         $('.col-details').addClass 'hidden'
     false
 
+  # clicking on country > city > event
   $('#country-table').on 'click', '.city-entry', ->
     event_id = $(this).data 'event-id'
     event = getEventById event_id
     selected_cell = $(this)
 
+    # collapse latest column
+    col_latest_height = $('.col-latest').height()
+    $('.latest').animate {
+      height: col_latest_height,
+    }, 'slow'
+    $('.latest-entries').hide 'slow'
+
+    # display details column if it is not already visible
     if $('.col-details').hasClass 'hidden'
       $('.details').attr 'data-event-id', event_id
       $('.details-title').text event.name
@@ -117,12 +128,7 @@ $ ->
       $('.col-details').removeClass 'hidden'
       $('.details').slideDown 'slow'
 
-      col_latest_height = $('.col-latest').height()
-      $('.latest').animate {
-        height: col_latest_height,
-      }, 'slow'
-
-      $('.latest-entries').hide 'slow'
+    # update details if details column already is visible
     else if +$('.details').attr('data-event-id') isnt event_id
       $('.city-entry.selected').removeClass 'selected'
 
@@ -130,6 +136,8 @@ $ ->
       $('.details-title').text event.name
       $('.details-entry').text event.description
       selected_cell.addClass 'selected'
+
+    # hide details if the event's details are already open
     else
       selected_cell.removeClass 'selected'
       $('.details').slideUp 'slow', ->
