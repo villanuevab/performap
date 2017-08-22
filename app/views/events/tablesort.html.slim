@@ -25,10 +25,10 @@
     .latest-title Latest
     .latest-entries
       - @events.recent.each do |e|
-        = link_to "#", class: "link-entry-details" do
-          .latest-entry data-event-id="#{e.id}"
-            .latest-entry-name = e.name
-            .latest-entry-city = e.city
+        /= link_to "#", class: "link-entry-details" do
+        .latest-entry data-event-id="#{e.id}"
+          .latest-entry-name = e.name
+          .latest-entry-city = e.city
 
 .col-country.hidden
   .country
@@ -41,6 +41,6 @@
           td
 
 .col-details.hidden
-  .details data-entry-id="-1"
+  .details data-event-id=-1
     .details-title
     .details-entry

@@ -104,6 +104,7 @@ $box-margin: 10px;
         @include darken-background-on-hover($color-latest-box-background);
 
         border-top: 1px solid #ffffff;
+        cursor: pointer;
 
         &.selected { @include darken-background($color-latest-box-background); }
 
