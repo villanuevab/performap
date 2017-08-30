@@ -64,6 +64,7 @@ $box-margin: 10px;
         @include darken-background-on-hover($color-directory-main-box-background);
 
         border-top: 1px solid #ffffff;
+        cursor: pointer;
 
         &.selected { @include darken-background($color-directory-main-box-background); }
       }
@@ -116,10 +117,10 @@ $box-margin: 10px;
   }
 }
 
-.col-country {
+.col-cities {
   @include col($col-country-width-full);
 
-  .country {
+  .cities {
     display: none;
     background-color: $color-country-box-background;
 
