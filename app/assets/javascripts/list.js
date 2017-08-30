@@ -263,11 +263,6 @@ var handleDirectoryCountryLink = function(elem) {
 };
 
 
-// returns true if elem clicked is link to event from latest column
-var isLatestEventLink = function(elem) {
-  return elem.classList.contains('latest-entry') || elem.classList.contains('latest-entry-name') || elem.classList.contains('latest-entry-city');
-};
-
 // toggle and update details for event clicked from latest column
 var handleLatestEventLink = function(elem) {
   var latest_entry = elem.classList.contains('latest-entry') ? elem : elem.parentElement;
@@ -295,6 +290,35 @@ var handleLatestEventLink = function(elem) {
     showDetailsColumn();
 };
 
+// TODO: consolidate into one function handleEventLink = function(elem, className)
+// toggle and update details for event clicked from cities column
+var handleCityEventLink = function(elem) {
+  var event_entry = elem.classList.contains('event-entry') ? elem : elem.parentElement;
+  var event_id = event_entry.dataset.eventId;
+
+  // hide details if event clicked is already displayed
+  if (document.querySelector('.details').dataset.eventId === event_id) {
+    event_entry.classList.remove('selected');
+    hideDetailsColumn();
+    return false;
+  }
+
+  // update styling for selected cell
+  if (document.querySelector('.event-entry.selected'))
+    document.querySelector('.event-entry.selected').classList.remove('selected');
+  event_entry.classList.add('selected');
+
+  // update event details
+  updateDetailsColumn(event_id);
+
+  // TODO: collapse latest column
+
+  // show details column if hidden
+  if (document.querySelector('.col-details').classList.contains('hidden'))
+    showDetailsColumn();
+};
+
+
 // set up same listeners on multiple elements
 var linkHandler = function (e) {
   var elem = e.target;
@@ -303,9 +327,11 @@ var linkHandler = function (e) {
   if (elem.classList.contains('link-country')) {
     // open cities column from clicking on country
     handleDirectoryCountryLink(elem);
-  } else if (isLatestEventLink(elem)) {
+  } else if (elem.className.search(/^(latest-entry)/i) > -1) {
     // show details from event clicked from latest column
     handleLatestEventLink(elem);
+  } else if (elem.className.search(/^(event-entry)/i) > -1) {
+    handleCityEventLink(elem);
   }
 };
 
