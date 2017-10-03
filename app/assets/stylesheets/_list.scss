@@ -64,6 +64,7 @@ $box-margin: 10px;
         @include darken-background-on-hover($color-directory-main-box-background);
 
         border-top: 1px solid #ffffff;
+        cursor: pointer;
 
         &.selected { @include darken-background($color-directory-main-box-background); }
       }
@@ -104,6 +105,7 @@ $box-margin: 10px;
         @include darken-background-on-hover($color-latest-box-background);
 
         border-top: 1px solid #ffffff;
+        cursor: pointer;
 
         &.selected { @include darken-background($color-latest-box-background); }
 
@@ -115,10 +117,10 @@ $box-margin: 10px;
   }
 }
 
-.col-country {
+.col-cities {
   @include col($col-country-width-full);
 
-  .country {
+  .cities {
     display: none;
     background-color: $color-country-box-background;
 
@@ -140,24 +142,16 @@ $box-margin: 10px;
 
         &.selected { @include darken-background($color-country-box-background); }
       }
+    }
 
-      .country-city-entries {
-        display: none;
+    .city-entry {
+      @include darken-background-on-hover($color-country-box-background);
 
-        .city-entry {
-          @extend %cell-entry-indented;
-          @include darken-background-on-hover($color-country-box-background);
+      &.selected { @include darken-background($color-country-box-background); }
 
-          border-top: 1px solid #ffffff;
-
-          &.selected { @include darken-background($color-country-box-background); }
-
-          .city-entry-name, .city-entry-venue, .city-entry-start-date { display: inline-block; }
-          .city-entry-name { width: 40%; }
-          .city-entry-venue { width: 40%; }
-          .city-entry-start-date { width: 20%; }
-        }
-      }
+      .city-entry-name { width: 40%; }
+      .city-entry-venue { width: 40%; }
+      .city-entry-start-date { width: 20%; }
     }
   }
 }
