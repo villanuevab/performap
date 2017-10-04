@@ -349,6 +349,12 @@ ready(function() {
   $('#cities-table').tablesorter({
     cssChildRow: 'tablesorter-childRow'});
   $('.tablesorter').delegate('.toggle', 'click', function() {
+    // hide previously opened table of events for a city if it exists
+    var openCity = document.querySelector('.city-entry>.selected a.toggle');
+    if (openCity)
+      openCity.click();
+
+    // open and close child tables of events for a given city
     $(this).parent().toggleClass('selected');
     $(this).closest('tr').nextUntil('tr:not(.tablesorter-childRow)').each(function() {
       if ($(this).children('td').css('display') === 'none') {
@@ -357,8 +363,8 @@ ready(function() {
         return $(this).find('table').tablesorter();
       } else {
         return $(this).find('td .secondary-table-wrapper').slideUp('slow', function() {
-          return $(this).parent().hide();
-        });
+            return $(this).parent().hide();
+          });
       }
     });
     return false;
