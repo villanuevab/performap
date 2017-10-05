@@ -349,24 +349,31 @@ ready(function() {
   $('#cities-table').tablesorter({
     cssChildRow: 'tablesorter-childRow'});
   $('.tablesorter').delegate('.toggle', 'click', function() {
-    // hide previously opened table of events for a city if it exists
-    var openCity = document.querySelector('.city-entry>.selected a.toggle');
-    if (openCity)
-      openCity.click();
+    var clickedCity = this;
 
-    // open and close child tables of events for a given city
-    $(this).parent().toggleClass('selected');
-    $(this).closest('tr').nextUntil('tr:not(.tablesorter-childRow)').each(function() {
+    // hide previously opened table of events for a city if it exists
+    var previousCity = document.querySelector('.city-entry>.selected a.toggle');
+    if (previousCity) {
+      previousCity.parentElement.classList.remove('selected');
+      $('td .secondary-table-wrapper').slideUp('slow', function() {
+        return $(this).parent().hide();
+      });
+
+      // don't proceed to open clicked city if just closed
+      if (previousCity == clickedCity)
+        return false;
+    }
+
+    // open child table of events for the clicked city if not previously open
+    clickedCity.parentElement.classList.add('selected');
+    $(clickedCity).closest('tr').nextUntil('tr:not(.tablesorter-childRow)').each(function() {
       if ($(this).children('td').css('display') === 'none') {
         $(this).children('td').show();
         $(this).find('td .secondary-table-wrapper').slideDown('slow');
         return $(this).find('table').tablesorter();
-      } else {
-        return $(this).find('td .secondary-table-wrapper').slideUp('slow', function() {
-            return $(this).parent().hide();
-          });
       }
     });
+
     return false;
   });
 });
