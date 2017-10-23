@@ -4,8 +4,7 @@
       .directory-title Directory
     .directory-entries
       .directory-subtitle Country
-      - @events.countries.each do |country|
-        /= link_to root_path, class: "link-country", data: { :country => country } do
+      - @recent_countries.each do |country|
         .directory-entry.link-country data-country="#{country}" = country
 
       .directory-subtitle &nbsp;
@@ -24,7 +23,7 @@
   .latest
     .latest-title Latest
     .latest-entries
-      - @events.recent.each do |e|
+      - @recent_events.each do |e|
         /= link_to "#", class: "link-entry-details" do
         .latest-entry.link-details data-event-id="#{e.id}"
           .latest-entry-name = e.name

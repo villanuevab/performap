@@ -5,7 +5,7 @@ class Event < ApplicationRecord
 
   scope :recent, -> { order(updated_at: :desc) }
 
-  def self.citiesByCountry
+  def self.cities_by_country
     citiesByCountry = Hash.new()
     self.countries.each do |c|
       citiesByCountry[c] = self.recent.cities_in_country(c)

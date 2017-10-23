@@ -90,7 +90,7 @@ var setupEventsTable = function() {
 var createTheadForEventsTable = function() {
   var thead = document.createElement('thead');
   var tr = document.createElement('tr');
-  var column_titles = ["Name", "Venue", "Date"];
+  var column_titles = ["Name", "Venue", "Date", "Updated At"];
   for (var i = 0, len = column_titles.length; i < len; i++) {
     var th = document.createElement('th');
     th.textContent = column_titles[i];
@@ -121,6 +121,11 @@ var createTrForEvent = function(event) {
   td_date.classList.add('event-entry-start-date');
   td_date.textContent = event.start_date;
   tr.appendChild(td_date);
+
+  var td_updated_at = document.createElement('td');
+  td_updated_at.classList.add('event-entry-updated-at');
+  td_updated_at.textContent = event.updated_at;
+  tr.appendChild(td_updated_at);
 
   return tr;
 };
@@ -175,6 +180,7 @@ var updateCitiesColumn = function(country) {
   var fragment = document.createDocumentFragment();
   var tbody = document.createElement('tbody');
 
+  // create secondary table of events for each city in new country
   var cities = gon.citiesByCountry[country];
   for (var i = 0, len = cities.length; i < len; i++) {
     tbody.appendChild(createTrForCity(cities[i]));
