@@ -198,7 +198,7 @@ DEPENDENCIES
   capybara-screenshot
   coffee-rails (~> 4.2)
   gon
-  jbuilder (~> 2.5)
+  jbuilder
   jquery-rails
   jquery-tablesorter
   listen

@@ -23,7 +23,7 @@
   .latest
     .latest-title Latest
     .latest-entries
-      - @recent_events.each do |e|
+      - @events.each do |e|
         /= link_to "#", class: "link-entry-details" do
         .latest-entry.link-details data-event-id="#{e.id}"
           .latest-entry-name = e.name
