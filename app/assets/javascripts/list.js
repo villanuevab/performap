@@ -17,9 +17,9 @@ var ready = function (fn) {
 
 // retrieve event details
 var getEventById = function(event_id) {
-  for (var i = 0, len = gon.events.length; i < len; i++) {
-    if (gon.events[i].id === event_id)
-      return gon.events[i];
+  for (var i = 0, len = gon.events.results.length; i < len; i++) {
+    if (gon.events.results[i].id === event_id)
+      return gon.events.results[i];
   }
 }
 
@@ -134,7 +134,7 @@ var createTrForEvent = function(event) {
 var createTbodyForEventsTable = function(city) {
   var tbody = document.createElement('tbody');
 
-  var eventsForCity = Array.prototype.filter.call(gon.events, function(event) {
+  var eventsForCity = Array.prototype.filter.call(gon.events.results, function(event) {
     return event.city === city;
   });
 
