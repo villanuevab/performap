@@ -119,7 +119,7 @@ var createTrForEvent = function(event) {
 
   var td_date = document.createElement('td');
   td_date.classList.add('event-entry-start-date');
-  td_date.textContent = event.start_date;
+  td_date.textContent = event.start_end_daterange;
   tr.appendChild(td_date);
 
   var td_updated_at = document.createElement('td');
@@ -358,10 +358,13 @@ ready(function() {
     var clickedCity = this;
 
     // hide previously opened table of events for a city if it exists
-    var previousCity = document.querySelector('.city-entry>.selected a.toggle');
+    var previousCity = document.querySelector('.selected-city a.toggle');
+
     if (previousCity) {
       previousCity.parentElement.classList.remove('selected');
-      $('td .secondary-table-wrapper').slideUp('slow', function() {
+      previousCity.parentElement.classList.remove('selected-city');
+      $('.selected-city-events-table').slideUp('slow', function() {
+        this.classList.remove('selected-city-events-table');
         return $(this).parent().hide();
       });
 
@@ -372,10 +375,13 @@ ready(function() {
 
     // open child table of events for the clicked city if not previously open
     clickedCity.parentElement.classList.add('selected');
+    clickedCity.parentElement.classList.add('selected-city');
     $(clickedCity).closest('tr').nextUntil('tr:not(.tablesorter-childRow)').each(function() {
       if ($(this).children('td').css('display') === 'none') {
         $(this).children('td').show();
-        $(this).find('td .secondary-table-wrapper').slideDown('slow');
+        $(this).find('td .secondary-table-wrapper').slideDown('slow', function() {
+          this.classList.add('selected-city-events-table');
+        });
         return $(this).find('table').tablesorter();
       }
     });
