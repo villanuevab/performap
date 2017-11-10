@@ -324,15 +324,30 @@ var handleCityEventLink = function(elem) {
     showDetailsColumn();
 };
 
+// sort table using external link
+var handleSortTableLink = function(elem) {
+  // sort larger city table
+  if (elem.dataset["sortBy"] == "City") {
+    $('#cities-table').trigger("sorton", [ $(elem).data("tablesorter") ]);
+    return;
+  }
+
+  // else, sort events table for given city
+  $('.selected-city-events-table').trigger("sorton", [ $(elem).data("tablesorter") ]);
+};
+
 
 // set up same listeners on multiple elements
 var linkHandler = function (e) {
   var elem = e.target;
-  console.log(e);
 
   if (elem.classList.contains('link-country')) {
     // open cities column from clicking on country
     handleDirectoryCountryLink(elem);
+  } else if (elem.classList.contains('link-sort')) {
+    // sort open table
+    e.preventDefault();
+    handleSortTableLink(elem);
   } else if (elem.className.search(/^(latest-entry)/i) > -1) {
     // show details from event clicked from latest column
     handleLatestEventLink(elem);
@@ -363,12 +378,13 @@ ready(function() {
     if (previousCity) {
       previousCity.parentElement.classList.remove('selected');
       previousCity.parentElement.classList.remove('selected-city');
-      $('.selected-city-events-table').slideUp('slow', function() {
-        this.classList.remove('selected-city-events-table');
+      $('.selected-city-events-table').removeClass('selected-city-events-table');
+      $('.selected-city-events-table-wrapper').slideUp('slow', function() {
+        this.classList.remove('selected-city-events-table-wrapper');
         return $(this).parent().hide();
       });
 
-      // don't proceed to open clicked city if just closed
+      // don't proceed to open the clicked city if it was just closed
       if (previousCity == clickedCity)
         return false;
     }
@@ -380,9 +396,12 @@ ready(function() {
       if ($(this).children('td').css('display') === 'none') {
         $(this).children('td').show();
         $(this).find('td .secondary-table-wrapper').slideDown('slow', function() {
-          this.classList.add('selected-city-events-table');
+          this.classList.add('selected-city-events-table-wrapper');
         });
-        return $(this).find('table').tablesorter();
+
+        var $table = $(this).find('table');
+        $table.addClass('selected-city-events-table');
+        return $table.tablesorter();
       }
     });
 
