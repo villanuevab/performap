@@ -31,12 +31,29 @@ $box-margin: 10px;
 }
 
 %cell-heading {
-  padding: 8px 5px;
+  // padding: 8px 5px;
+  padding: 8px 5px 23px 5px;
   text-transform: uppercase;
 }
 
 %cell-entry { padding: 2px 5px; }
 %cell-entry-indented { padding: 2px 15px; }
+
+table {
+  @extend %static-link;
+
+  // hide columns used to sort tables
+  // (4) Updated At
+  th:nth-child(4), td:nth-child(4) {
+    display: none;
+  }
+
+  &.secondary-table {
+    border-width: 0 0 0 0;
+
+    thead { display: none; }
+  }
+}
 
 .col-menu {
   @include col($col-menu-width-full);
@@ -128,21 +145,11 @@ $box-margin: 10px;
       @include tablesorter-theme($color-country-box-background);
 
       tr.country-city { text-transform: uppercase; }
+
+      thead { display: none; }
     }
 
-    .country-title { @extend %cell-heading; }
-
-    .country-entries {
-      .country-city {
-        @extend %cell-entry;
-        @include darken-background-on-hover($color-country-box-background);
-
-        border-top: 1px solid #ffffff;
-        text-transform: uppercase;
-
-        &.selected { @include darken-background($color-country-box-background); }
-      }
-    }
+    .cities-title { @extend %cell-heading; }
 
     .city-entry {
       @include darken-background-on-hover($color-country-box-background);

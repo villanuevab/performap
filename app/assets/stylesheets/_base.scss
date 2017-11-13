@@ -35,22 +35,6 @@ h1, h2, h3, h4, h5, h6 {
 a, a:link, a:visited { color: grey; }
 a:hover { color: #000; }
 
-table {
-  @extend %static-link;
-
-  // hide columns used to sort tables
-  // (4) Updated At
-  th:nth-child(4), td:nth-child(4) {
-    display: none;
-  }
-
-  &.secondary-table {
-    border-width: 0 0 0 0;
-
-    thead { display: none; }
-  }
-}
-
 .hidden { display: none !important; }
 
 @mixin darken-background($background-color) {

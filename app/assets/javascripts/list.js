@@ -174,7 +174,7 @@ var createTrForCity = function(city) {
 
 // update table for cities and events
 var updateCitiesColumn = function(country) {
-  document.querySelector('#cities-table thead th').textContent = country;
+  document.querySelector('.cities-title').textContent = country;
   document.querySelector('.cities').dataset.country = country;
 
   var fragment = document.createDocumentFragment();
