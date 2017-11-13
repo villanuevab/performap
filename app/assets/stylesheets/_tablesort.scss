@@ -200,9 +200,13 @@ $sortDescWhite : url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEAL
 
     tr.secondary-table-row > td {
       padding: 0;
+      border-top: 0px;
 
       div.secondary-table-wrapper {
         display: none;
+
+        // indent events table for given city
+        td.event-entry-name { padding-left: 15px };
       }
     }
 
@@ -236,7 +240,10 @@ $sortDescWhite : url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEAL
     @include hovered($background-color);
   }
 
-  tbody > tr.tablesorter-childRow table tbody tr td { background-color: transparent; }
+  tbody > tr.tablesorter-childRow table tbody tr td {
+    background-color: transparent;
+    border-color: $background-color;
+  }
   tbody > tr.tablesorter-childRow table tbody tr:hover td { @include hovered($background-color); }
 
   /* table processing indicator - indeterminate spinner */
