@@ -1,7 +1,8 @@
 .col-menu
   .directory-main
     = link_to root_path, class: "link-latest" do
-      .directory-title Directory
+      .col-header-wrapper
+        .col-header-title Directory
     .directory-entries
       .directory-subtitle Country
       - @recent_countries.each do |country|
@@ -19,26 +20,28 @@
 
   .map-other Map
 
-  br
-  .sort-links
-    = link_to "Added: New to Old", "", class: "link-sort", :data => { :sort_by => "Updated At", :tablesorter => "[[3,1]]" }
-    = link_to "City A-Z", "", class: "link-sort", :data => { :sort_by => "City", :tablesorter => "[[0,0]]" }
-    = link_to "Title A-Z", "", class: "link-sort", :data => { :sort_by => "Name", :tablesorter => "[[0,0]]" }
-    = link_to "Start Date", "", class: "link-sort", :data => { :sort_by => "Start Date", :tablesorter => "[[2,0]]" }
-
 .col-latest.hidden
   .latest
-    .latest-title Latest
+    .col-header-wrapper
+      .col-header-title Latest
     .latest-entries
       - @events.each do |e|
-        /= link_to "#", class: "link-entry-details" do
         .latest-entry.link-details data-event-id="#{e.id}"
           .latest-entry-name = e.name
           .latest-entry-city = e.city
 
 .col-cities.hidden
   .cities data-country=""
-    .cities-title Country
+    .col-header-wrapper
+      .col-header-title Country
+      .sort-dropdown.collapsed
+        .sort-dropdown-title
+          = link_to "Sort By...", "", class: "sort-dropdown-toggle"
+        .sort-dropdown-collapsible
+          = link_to "City A-Z", "", class: "link-sort", :data => { :sort_by => "City", :tablesorter => "[[0,0]]" }
+          = link_to "Title A-Z", "", class: "link-sort", :data => { :sort_by => "Name", :tablesorter => "[[0,0]]" }
+          = link_to "Start Date", "", class: "link-sort", :data => { :sort_by => "Start Date", :tablesorter => "[[2,0]]" }
+          = link_to "Added: New to Old", "", class: "link-sort", :data => { :sort_by => "Updated At", :tablesorter => "[[3,1]]" }
     table#cities-table.tablesorter
       thead
         tr

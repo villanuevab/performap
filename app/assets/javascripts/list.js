@@ -134,12 +134,12 @@ var createTrForEvent = function(event) {
 var createTbodyForEventsTable = function(city) {
   var tbody = document.createElement('tbody');
 
-  var eventsForCity = Array.prototype.filter.call(gon.events.results, function(event) {
+  var events_for_city = Array.prototype.filter.call(gon.events.results, function(event) {
     return event.city === city;
   });
 
-  for (var i = 0, len = eventsForCity.length; i < len; i++)
-    tbody.appendChild(createTrForEvent(eventsForCity[i]));
+  for (var i = 0, len = events_for_city.length; i < len; i++)
+    tbody.appendChild(createTrForEvent(events_for_city[i]));
 
   return tbody;
 };
@@ -174,7 +174,7 @@ var createTrForCity = function(city) {
 
 // update table for cities and events
 var updateCitiesColumn = function(country) {
-  document.querySelector('.cities-title').textContent = country;
+  document.querySelector('.cities .col-header-title').textContent = country;
   document.querySelector('.cities').dataset.country = country;
 
   var fragment = document.createDocumentFragment();
@@ -324,6 +324,28 @@ var handleCityEventLink = function(elem) {
     showDetailsColumn();
 };
 
+
+// toggle dropdown menu for sorting
+var toggleSortDropdown = function(e) {
+  e.preventDefault();
+
+  //var $toggle = $('a.sort-dropdown-toggle');
+  var $dropdown = $('.sort-dropdown');
+
+  if ($dropdown.hasClass('collapsed')) {
+    //$toggle.data("collapsed", false);
+
+    $('.sort-dropdown-collapsible').slideDown('fast');
+    $dropdown.removeClass('collapsed');
+  } else {
+    //$toggle.data("collapsed", true);
+
+    $('.sort-dropdown-collapsible').slideUp('fast', function() {
+      $dropdown.addClass('collapsed');
+    });
+  }
+};
+
 // sort table using external link
 var handleSortTableLink = function(elem) {
   // sort larger city table
@@ -366,18 +388,21 @@ ready(function() {
   // toggle directory menu and latest column
   document.querySelector('a.link-latest').addEventListener('click', handleDirectoryLink, false);
 
+  // toggle sorting dropdown
+  document.querySelector('a.sort-dropdown-toggle').addEventListener('click', toggleSortDropdown, false);
+
   // set up tablesorter
   $('#cities-table').tablesorter({
     cssChildRow: 'tablesorter-childRow'});
   $('.tablesorter').delegate('.toggle', 'click', function() {
-    var clickedCity = this;
+    var clicked_city = this;
 
     // hide previously opened table of events for a city if it exists
-    var previousCity = document.querySelector('.selected-city a.toggle');
+    var previous_city = document.querySelector('.selected-city a.toggle');
 
-    if (previousCity) {
-      previousCity.parentElement.classList.remove('selected');
-      previousCity.parentElement.classList.remove('selected-city');
+    if (previous_city) {
+      previous_city.parentElement.classList.remove('selected');
+      previous_city.parentElement.classList.remove('selected-city');
       $('.selected-city-events-table').removeClass('selected-city-events-table');
       $('.selected-city-events-table-wrapper').slideUp('slow', function() {
         this.classList.remove('selected-city-events-table-wrapper');
@@ -385,14 +410,14 @@ ready(function() {
       });
 
       // don't proceed to open the clicked city if it was just closed
-      if (previousCity == clickedCity)
+      if (previous_city == clicked_city)
         return false;
     }
 
     // open child table of events for the clicked city if not previously open
-    clickedCity.parentElement.classList.add('selected');
-    clickedCity.parentElement.classList.add('selected-city');
-    $(clickedCity).closest('tr').nextUntil('tr:not(.tablesorter-childRow)').each(function() {
+    clicked_city.parentElement.classList.add('selected');
+    clicked_city.parentElement.classList.add('selected-city');
+    $(clicked_city).closest('tr').nextUntil('tr:not(.tablesorter-childRow)').each(function() {
       if ($(this).children('td').css('display') === 'none') {
         $(this).children('td').show();
         $(this).find('td .secondary-table-wrapper').slideDown('slow', function() {
