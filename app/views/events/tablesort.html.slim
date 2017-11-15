@@ -39,8 +39,9 @@
           = link_to "Sort By...", "", class: "sort-dropdown-toggle"
         .sort-dropdown-collapsible
           = link_to "City A-Z", "", class: "link-sort", :data => { :sort_by => "City", :tablesorter => "[[0,0]]" }
-          = link_to "Title A-Z", "", class: "link-sort", :data => { :sort_by => "Name", :tablesorter => "[[0,0]]" }
-          = link_to "Start Date", "", class: "link-sort", :data => { :sort_by => "Start Date", :tablesorter => "[[2,0]]" }
+          .sort-dropdown-events.hidden
+            = link_to "Title A-Z", "", class: "link-sort", :data => { :sort_by => "Name", :tablesorter => "[[0,0]]" }
+            = link_to "Start Date", "", class: "link-sort", :data => { :sort_by => "Start Date", :tablesorter => "[[2,0]]" }
           = link_to "Added: New to Old", "", class: "link-sort", :data => { :sort_by => "Updated At", :tablesorter => "[[3,1]]" }
     table#cities-table.tablesorter
       thead

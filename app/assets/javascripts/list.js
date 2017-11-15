@@ -329,22 +329,29 @@ var handleCityEventLink = function(elem) {
 var toggleSortDropdown = function(e) {
   e.preventDefault();
 
-  //var $toggle = $('a.sort-dropdown-toggle');
   var $dropdown = $('.sort-dropdown');
 
   if ($dropdown.hasClass('collapsed')) {
-    //$toggle.data("collapsed", false);
+    // show sort criteria for events (Title, Start Date) if events table is open
+    if (document.querySelector('.selected-city-events-table')) {
+      document.querySelector('.sort-dropdown-events').classList.remove('hidden');
+    } else {
+      document.querySelector('.sort-dropdown-events').classList.add('hidden');
+    }
 
     $('.sort-dropdown-collapsible').slideDown('fast');
     $dropdown.removeClass('collapsed');
   } else {
-    //$toggle.data("collapsed", true);
-
-    $('.sort-dropdown-collapsible').slideUp('fast', function() {
-      $dropdown.addClass('collapsed');
-    });
+    closeSortDropdown();
   }
 };
+
+// close dropdown menu for sorting
+var closeSortDropdown = function() {
+  $('.sort-dropdown-collapsible').slideUp('fast', function() {
+    document.querySelector('.sort-dropdown').classList.add('collapsed');
+  });
+}
 
 // sort table using external link
 var handleSortTableLink = function(elem) {
@@ -362,6 +369,11 @@ var handleSortTableLink = function(elem) {
 // set up same listeners on multiple elements
 var linkHandler = function (e) {
   var elem = e.target;
+
+  // close sort dropdown if click is outside dropdown menu
+  if (!$(elem).parents('.sort-dropdown').length) {
+    closeSortDropdown();
+  }
 
   if (elem.classList.contains('link-country')) {
     // open cities column from clicking on country
@@ -395,6 +407,8 @@ ready(function() {
   $('#cities-table').tablesorter({
     cssChildRow: 'tablesorter-childRow'});
   $('.tablesorter').delegate('.toggle', 'click', function() {
+    closeSortDropdown();
+
     var clicked_city = this;
 
     // hide previously opened table of events for a city if it exists
