@@ -14,6 +14,7 @@ gem 'gon'
 gem 'jquery-rails'
 gem 'slim-rails'
 gem 'jquery-tablesorter'
+gem 'geocoder'
 
 # Password encryption
 gem 'bcrypt'
