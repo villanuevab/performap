@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  has_and_belongs_to_many :venues
+
   scope :countries, -> { pluck(:country).uniq }
   scope :cities_in_country, -> (country) { where(country: country).pluck(:city).uniq }
   scope :in_city, -> (city) { where(city: city) }
