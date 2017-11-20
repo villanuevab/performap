@@ -1,14 +1,11 @@
 require 'csv'
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'usa.csv'))
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'usa2.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   e = Event.new
   e.name = row['Name']
   e.presenter = row['Presenter']
-  e.city = row['City']
-  e.state = row['State']
-  e.country = row['Country']
 
   startDateStr = row['StartDay'] + ' ' + row['StartMonth'] + ' ' + row['StartYear']
   unless startDateStr.blank?
@@ -26,8 +23,12 @@ csv.each do |row|
   e.instagram = row['Instagram']
   e.twitter = row['Twitter']
   e.youtube = row['Youtube']
-  e.save
-  puts "#{e.name}, #{e.city} saved"
+
+  v = Venue.new
+  v.name = row['Venue']
+  v.given_address = [row['Address'], row['City'], row['State'], row['Country']].compact.join(', ')
+  # e.save
+  puts "#{e.name}, #{v.name}, #{v.given_address} read"
 end
 
-puts "There are now #{Event.count} rows in the Events table."
+# puts "There are now #{Event.count} rows in the Events table."
