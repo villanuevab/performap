@@ -42,16 +42,16 @@ ActiveRecord::Schema.define(version: 20171117165405) do
 
   create_table "venues", force: :cascade do |t|
     t.text "name"
+    t.text "given_address"
     t.float "latitude"
     t.float "longitude"
-    t.text "formatted_address"
+    t.text "street_address"
     t.text "city"
+    t.text "state"
     t.text "country"
+    t.text "formatted_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "given_address"
-    t.text "street_address"
-    t.text "state"
   end
 
 end
