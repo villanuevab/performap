@@ -34,10 +34,6 @@ csv.each do |row|
   end
 
   requests_per_minute += 1
-  # if geo = Geocoder.search(v.given_address).first
-  #   puts geo.coordinates
-  #   puts geo.formatted_address
-  # end
   if (requests_per_minute > max_requests_per_minute)
     sleep(2)
     requests_per_minute = 0
