@@ -1,8 +1,9 @@
 class Venue < ApplicationRecord
   has_and_belongs_to_many :events, :uniq => true
 
-  scope :countries, -> { pluck(:country).uniq }
+  scope :cities, -> { pluck('venues.city').uniq }
   scope :cities_in_country, -> (country) { where(country: country).pluck(:city).uniq }
+  scope :countries, -> { pluck(:country).uniq }
 
   geocoded_by :given_address do |venue, results|
     if geo = results.first
