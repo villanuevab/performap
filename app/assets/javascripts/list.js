@@ -135,7 +135,7 @@ var createTbodyForEventsTable = function(city) {
   var tbody = document.createElement('tbody');
 
   var events_for_city = Array.prototype.filter.call(gon.events.results, function(event) {
-    return event.city === city;
+    return event.cities.includes(city);
   });
 
   for (var i = 0, len = events_for_city.length; i < len; i++)
