@@ -356,13 +356,19 @@ var closeSortDropdown = function() {
 // sort table using external link
 var handleSortTableLink = function(elem) {
   // sort larger city table
-  if (elem.dataset["sortBy"] == "City") {
-    $('#cities-table').trigger("sorton", [ $(elem).data("tablesorter") ]);
+  if (elem.dataset['sortBy'] == "City") {
+    $('#cities-table').trigger('sorton', [ $(elem).data('tablesorter') ]);
+    return;
+  }
+
+  // for sorting by last updated, sort larger city table if events table is not open
+  if (elem.dataset['sortBy'] == "Updated At" && !$('.selected-city-events-table').length) {
+    $('#cities-table').trigger('sortReset');
     return;
   }
 
   // else, sort events table for given city
-  $('.selected-city-events-table').trigger("sorton", [ $(elem).data("tablesorter") ]);
+  $('.selected-city-events-table').trigger('sorton', [ $(elem).data('tablesorter') ]);
 };
 
 
