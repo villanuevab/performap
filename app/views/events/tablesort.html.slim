@@ -28,7 +28,7 @@
       - @events.each do |e|
         .latest-entry.link-details data-event-id="#{e.id}"
           .latest-entry-name = e.name
-          .latest-entry-city = e.city
+          .latest-entry-city = e.primary_city
 
 .col-cities.hidden
   .cities data-country=""
