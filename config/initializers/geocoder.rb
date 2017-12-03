@@ -7,7 +7,7 @@ Geocoder.configure(
   use_https: true,
   cache: REDIS,
   always_raise: [
-    Geocoder::OverQueryLimitError,
+    # Geocoder::OverQueryLimitError,
     Geocoder::RequestDenied,
     Geocoder::InvalidRequest,
     Geocoder::InvalidApiKey

@@ -7,6 +7,7 @@ requests_per_minute = 0
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'usa2.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
+  # find or initialize event
   event = Event.find_or_initialize_by(name: row['Name']) do |e|
     e.presenter = row['Presenter']
 
@@ -29,17 +30,23 @@ csv.each do |row|
     e.save!
   end
 
+  # find or initialize venue
   venue = Venue.find_or_initialize_by(name: row['Venue'], state: row['State']) do |v|
     v.given_address = [row['Address'], row['City'], row['State'], row['Country']].compact.join(', ')
   end
 
+  # sleeping to help with geocoder over query limit errors
   requests_per_minute += 1
   if (requests_per_minute > max_requests_per_minute)
     sleep(2)
     requests_per_minute = 0
   end
 
-  venue.events << event
+  # create association between venue and event if it does not yet exist
+  unless venue.events.include?(event)
+    venue.events << event
+  end
+
   venue.save!
   puts "#{event.name}, #{venue.name}, #{venue.formatted_address} read"
 end
