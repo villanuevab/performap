@@ -28,11 +28,11 @@ class EventsController < ApplicationController
   end
 
   def tablesort
-    @events = Event.recent
-    @recent_countries = Event.countries
+    @events = Event.recent.includes(:venues)
+    @recent_countries = Venue.countries
     gon.jbuilder template: 'app/views/api/v1/events/index.json.jbuilder', as: :events
 
-    gon.citiesByCountry = Event.cities_by_country
+    gon.citiesByCountry = Venue.cities_by_country
   end
 
   private

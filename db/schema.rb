@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807212911) do
+ActiveRecord::Schema.define(version: 20171129213118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,29 @@ ActiveRecord::Schema.define(version: 20170807212911) do
     t.text "youtube"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "events_venues", id: false, force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "venue_id"
+    t.index ["event_id", "venue_id"], name: "index_events_venues_on_event_id_and_venue_id", unique: true
+    t.index ["event_id"], name: "index_events_venues_on_event_id"
+    t.index ["venue_id", "event_id"], name: "index_events_venues_on_venue_id_and_event_id", unique: true
+    t.index ["venue_id"], name: "index_events_venues_on_venue_id"
+  end
+
+  create_table "venues", force: :cascade do |t|
+    t.text "name"
+    t.float "latitude"
+    t.float "longitude"
+    t.text "formatted_address"
+    t.text "city"
+    t.text "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "given_address"
+    t.text "street_address"
+    t.text "state"
   end
 
 end
