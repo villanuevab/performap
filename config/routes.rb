@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
-
-  root 'events#tablesort'
+  root 'home#directory'
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
