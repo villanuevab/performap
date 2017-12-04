@@ -12,7 +12,9 @@
 
   <body class="<%= controller_name %> <%= action_name %>">
     <div class="container">
-      <h1><%= link_to "Performap", root_path %></h1>
+      <div id="performap-logo-link">
+        <h1><%= link_to "Performap", root_path %></h1>
+      </div>
       <%= yield %>
     </div>
   </body>

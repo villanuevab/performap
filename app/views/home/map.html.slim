@@ -1,8 +1,16 @@
-.col-menu
-  .map-main Map
+#map-wrapper
+  #map-overlay
+    h1 = link_to "Performap", root_path
 
-  .search Search...
+    .col-menu
+      .map-main Map
 
-  .modus-other
-    = link_to root_path do
-      .col-header-title Directory
+      .search Search...
+
+      .modus-other
+        = link_to root_path do
+          .col-header-title Directory
+
+  #map
+
+  script[async defer src=google_maps_url]

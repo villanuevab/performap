@@ -3,6 +3,7 @@ json.results @events do |event|
   json.name event.name
 
   json.cities event.cities
+  json.coordinates event.coordinates
 
   json.start_date event.start_date.strftime("%-m/%-d")
 

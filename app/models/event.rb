@@ -9,6 +9,12 @@ class Event < ApplicationRecord
     self.venues.pluck(:city).uniq
   end
 
+  # get array of unique coordinates based on given event's associated venues
+  # used for map modus to create markers
+  def coordinates
+    self.venues.pluck(:latitude, :longitude)
+  end
+
   # get the city with the majority of an event's venue(s)
   def primary_city
     mode(self.venues.pluck(:city))
