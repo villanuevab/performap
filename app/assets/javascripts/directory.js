@@ -1,20 +1,3 @@
-var supports = !!document.querySelector && !!window.addEventListener;
-
-// wait until DOM is ready
-var ready = function (fn) {
-  // sanity check
-  if (typeof fn !== 'function')
-    return;
-
-  // if document is already loaded, run method
-  if (document.readyState === 'interactive' || document.readyState === 'complete')
-    return fn();
-
-  // otherwise, wait until document is loaded
-  document.addEventListener('DOMContentLoaded', fn, false);
-};
-
-
 // retrieve event details
 var getEventById = function(event_id) {
   for (var i = 0, len = gon.events.results.length; i < len; i++) {
@@ -397,10 +380,13 @@ var linkHandler = function (e) {
 };
 
 
-ready(function() {
-  if (!supports)
+$(document).on("turbolinks:load", function() {
+  // load this JS file only when on directory page
+  if (!document.querySelector('.home.directory')) {
     return;
+  }
 
+  // initialize link handler
   document.addEventListener('click', linkHandler, false);
 
   // toggle directory menu and latest column

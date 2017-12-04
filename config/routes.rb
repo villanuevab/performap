@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'home#directory'
 
+  get 'map', to: 'home#map', as: :map
+
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       resources :events, only: [:index]

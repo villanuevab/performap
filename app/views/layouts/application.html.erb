@@ -10,7 +10,7 @@
     <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto" %>
   </head>
 
-  <body>
+  <body class="<%= controller_name %> <%= action_name %>">
     <div class="container">
       <h1><%= link_to "Performap", root_path %></h1>
       <%= yield %>
