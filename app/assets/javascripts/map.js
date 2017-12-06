@@ -60,6 +60,44 @@ function initMapModus() {
     }
   ]);
 
+  // styling for marker clustering
+  var mcOptions = {
+    zoomOnClick: false,
+    imagePath: 'assets/images',
+    minimumClusterSize: 1,
+    styles: [{
+      url: 'assets/images/circle.svg',
+      height: 40,
+      width: 40,
+      textColor: '#ffffff',
+      textSize: 14
+    }, {
+      url: 'assets/images/circle.svg',
+      height: 45,
+      width: 45,
+      textColor: '#ffffff',
+      textSize: 14
+    }, {
+      url: 'assets/images/circle.svg',
+      height: 55,
+      width: 55,
+      textColor: '#ffffff',
+      textSize: 14
+    }, {
+      url: 'assets/images/circle.svg',
+      height: 65,
+      width: 65,
+      textColor: '#ffffff',
+      textSize: 14
+    }, {
+      url: 'assets/images/circle.svg',
+      height: 75,
+      width: 75,
+      textColor: '#ffffff',
+      textSize: 14
+    }]
+  };
+
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 4,
     center: new google.maps.LatLng(39.8097343, -98.5556199),
@@ -72,9 +110,7 @@ function initMapModus() {
 
   var markers = createMarkers();
 
-  var markerCluster = new MarkerClusterer(map, markers, {
-    imagePath: 'assets/images/m'
-  });
+  var markerCluster = new MarkerClusterer(map, markers, mcOptions);
 }
 
 var createMarkers = function() {

@@ -30,6 +30,10 @@
  * limitations under the License.
  */
 
+/**
+ * Changes made by Sophie Ye (@soye on Github):
+ * - removed font-family specification from cluster style icon creation
+ */
 
 /**
  * A Marker Clusterer that clusters markers.
@@ -1253,7 +1257,7 @@ ClusterIcon.prototype.createCss = function(pos) {
 
   style.push('cursor:pointer; top:' + pos.y + 'px; left:' +
       pos.x + 'px; color:' + txtColor + '; position:absolute; font-size:' +
-      txtSize + 'px; font-family:Arial,sans-serif; font-weight:bold');
+      txtSize + 'px;');
   return style.join('');
 };
 
