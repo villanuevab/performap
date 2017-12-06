@@ -1,4 +1,5 @@
 var map;
+
 function initMapModus() {
   // map styling
   var styledMapType = new google.maps.StyledMapType([
@@ -55,7 +56,7 @@ function initMapModus() {
     },
     {
       "featureType": "water",
-      "stylers": [{"color": "#cce8f6"}]
+      "stylers": [{"color": "#cce8f4"}]
     }
   ]);
 
@@ -69,21 +70,28 @@ function initMapModus() {
   map.mapTypes.set('styled_map', styledMapType);
   map.setMapTypeId('styled_map');
 
-  createMarkers();
+  var markers = createMarkers();
+
+  var markerCluster = new MarkerClusterer(map, markers, {
+    imagePath: 'assets/images/m'
+  });
 }
 
 var createMarkers = function() {
-  console.log("creating markers...");
+  var markers = [];
   var events = gon.events.results;
+
   for (var i = 0; i < events.length; i++) {
     for (var j = 0; j < events[i].coordinates.length; j++) {
       var coords = events[i].coordinates[j];
-      console.log(coords);
       var latLng = new google.maps.LatLng(coords[0], coords[1]);
       var marker = new google.maps.Marker({
-        position: latLng,
-        map: map
+        position: latLng
       })
+
+      markers.push(marker);
     }
   }
+
+  return markers;
 };

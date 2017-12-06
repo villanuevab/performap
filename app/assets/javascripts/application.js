@@ -16,4 +16,5 @@
 //= require jquery-tablesorter
 //= require turbolinks
 //= require directory
+//= require markerclusterer
 //= require map
