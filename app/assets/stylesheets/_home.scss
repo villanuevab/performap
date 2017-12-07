@@ -5,6 +5,7 @@ $color-search-box-background: $color-surf-crest;
 $color-latest-box-background: $color-aths-special;
 $color-country-box-background: $color-almond;
 $color-details-box-background: $color-spindle;
+$color-desc-box-background: $color-surf-crest;
 
 $col-menu-width-full: 160px;
 $col-latest-width-full: 280px;
@@ -217,5 +218,16 @@ table {
 
     .details-title { @extend %cell-heading; }
     .details-entry { @extend %cell-entry; }
+  }
+}
+
+#col-desc {
+  @include col($col-details-width-full);
+
+  .desc {
+    background-color: $color-desc-box-background;
+
+    .desc-title { @extend %cell-heading; }
+    .desc-entry { @extend %cell-entry; }
   }
 }

@@ -124,10 +124,16 @@ function initMapModus() {
   markerCluster = new MarkerClusterer(map, markers, mcOptions);
 
   markerCluster.addListener('click', function(cluster) {
-    console.log('mc has ' + cluster.getSize() + ' markers');
     var markers = cluster.getMarkers();
 
-    console.log('event ' + markers[0].eventId + ' at ' + markers[0].getPosition());
+    if (cluster.getSize() > 1 && map.getZoom() < map.maxZoom) {
+      hideDesc();
+      zoomIntoCluster(cluster);
+
+    } else {
+      // Open description for events at given cluster.
+      showDescForCluster(cluster);
+    }
   });
 }
 
@@ -157,7 +163,64 @@ var createMarkers = function() {
 /**
  * Returns an array of events ids from a given cluster.
  */
-var getEventIdsFromMarkerCluster = function(cluster) {
-  var event_ids = [];
+var getEventIdsFromCluster = function(cluster) {
+  var event_ids = new Set();
+
+  var markers = cluster.getMarkers();
+  for (var i = 0; i < markers.length; i++) {
+    event_ids.add(markers[i].eventId);
+  }
+
   return event_ids;
+}
+
+/**
+ * Hide panel of descriptions for events.
+ */
+var hideDesc = function() {
+  document.querySelector('#col-desc').classList.add('hidden');
+}
+
+/**
+ * Display panel of descriptions for events in given cluster.
+ */
+var showDescForCluster = function(cluster) {
+  var event_ids = getEventIdsFromCluster(cluster);
+
+  document.querySelector('.desc').textContent = "";
+
+  for (let event_id of event_ids) {
+    var event = getEventById(event_id);
+
+    var desc = document.querySelector('.desc');
+    desc.setAttribute('data-event-id', event_id);
+
+    var title = document.createElement('div');
+    title.classList.add('desc-title');
+    title.appendChild(document.createTextNode(event.name));
+
+    var entry = document.createElement('div');
+    entry.classList.add('desc-entry');
+    entry.appendChild(document.createTextNode(event.description));
+
+    desc.appendChild(title);
+    desc.appendChild(entry);
+  }
+
+  document.querySelector('#col-desc').classList.remove('hidden');
+}
+
+/**
+ * Zoom in on markers in cluster (taken from markerclusterer.js).
+ */
+var zoomIntoCluster = function(cluster) {
+ var theBounds = cluster.getBounds();
+ map.fitBounds(theBounds);
+ setTimeout(function () {
+   map.fitBounds(theBounds);
+   // Don't zoom beyond the max zoom level
+   if (map.getZoom() > map.maxZoom) {
+     map.setZoom(map.maxZoom - 1);
+   }
+ }, 100);
 }

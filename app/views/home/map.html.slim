@@ -1,5 +1,5 @@
 #map-wrapper
-  #map-overlay
+  #menu-overlay
     h1 = link_to "Performap", root_path
 
     .col-menu
@@ -10,6 +10,12 @@
       .modus-other
         = link_to root_path do
           .col-header-title Directory
+
+  #desc-overlay
+    #col-desc.hidden
+      .desc data-event-id=-1
+        .desc-title Sample Title
+        .desc-entry Sample Entry
 
   #map
 

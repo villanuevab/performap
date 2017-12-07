@@ -8,10 +8,22 @@
     left: 0;
   }
 
-  #map-overlay {
+  #menu-overlay {
     position: absolute;
     top: 10px;
     left: 10px;
     z-index: 99;
+  }
+
+  #desc-overlay {
+    position: absolute;
+    top: 61px;
+    right: 10px;
+    z-index: 99;
+
+    #col-desc {
+      position: absolute;
+      right: 100px;
+    }
   }
 }
