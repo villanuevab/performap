@@ -35,6 +35,12 @@
  * limitations under the License.
  */
 
+/**
+ * List of Changes by Sophie Ye (@soye on Github)
+ * ----------------------------------------------
+ * - In ClusterIcon.prototype.onAdd, the MouseEvent is now also passed in addition to the Cluster
+ *   element when the click event is fired.
+ */
 
 /**
  * @name ClusterIconStyle
@@ -147,7 +153,7 @@ ClusterIcon.prototype.onAdd = function () {
        * @param {Cluster} c The cluster that was clicked.
        * @event
        */
-      google.maps.event.trigger(mc, "click", cClusterIcon.cluster_);
+      google.maps.event.trigger(mc, "click", cClusterIcon.cluster_, e);
       google.maps.event.trigger(mc, "clusterclick", cClusterIcon.cluster_); // deprecated name
 
       // The default click handler follows. Disable it by setting

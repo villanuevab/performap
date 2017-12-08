@@ -1,4 +1,4 @@
-var map, markerCluster;
+var map;
 
 function initMapModus() {
   // map styling
@@ -111,7 +111,6 @@ function initMapModus() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 4,
     maxZoom: 14,
-    center: new google.maps.LatLng(39.8097343, -98.5556199),
     mapTypeControl: false
   });
 
@@ -121,17 +120,17 @@ function initMapModus() {
 
   var markers = createMarkers();
 
-  markerCluster = new MarkerClusterer(map, markers, mcOptions);
-
-  markerCluster.addListener('click', function(cluster) {
-    var markers = cluster.getMarkers();
-
+  // initialize marker clusterer
+  var mc = new MarkerClusterer(map, markers, mcOptions);
+  mc.fitMapToMarkers();
+  mc.addListener('click', function(cluster, e) {
+    // zoom in on the map if there are multiple events in a cluster
     if (cluster.getSize() > 1 && map.getZoom() < map.maxZoom) {
       hideDesc();
       zoomIntoCluster(cluster);
-
     } else {
       // Open description for events at given cluster.
+      highlightCluster(e.target);
       showDescForCluster(cluster);
     }
   });
@@ -161,6 +160,30 @@ var createMarkers = function() {
 };
 
 /**
+ * Highlight cluster by changing marker icon.
+ */
+var highlightCluster = function(elem) {
+  // get cluster element
+  var cluster = elem;
+  while (!cluster.classList.contains('cluster')) {
+    cluster = cluster.parentElement;
+  }
+
+  // clear previously highlighted clusters
+  var prevHighlightedClusters = document.querySelectorAll('.highlighted-cluster');
+  for (var i = 0; i < prevHighlightedClusters.length; i++) {
+    var img = $(prevHighlightedClusters[i]).children('img').get(0);
+    img.src = "assets/images/circle.svg";
+    prevHighlightedClusters[i].classList.remove('highlighted-cluster');
+  }
+
+  // highlight desired cluster
+  cluster.classList.add('highlighted-cluster');
+  var img = $(cluster).children('img').get(0);
+  img.src = "assets/images/circle_open.svg";
+};
+
+/**
  * Returns an array of events ids from a given cluster.
  */
 var getEventIdsFromCluster = function(cluster) {
@@ -172,14 +195,14 @@ var getEventIdsFromCluster = function(cluster) {
   }
 
   return event_ids;
-}
+};
 
 /**
  * Hide panel of descriptions for events.
  */
 var hideDesc = function() {
   document.querySelector('#col-desc').classList.add('hidden');
-}
+};
 
 /**
  * Display panel of descriptions for events in given cluster.
@@ -208,7 +231,7 @@ var showDescForCluster = function(cluster) {
   }
 
   document.querySelector('#col-desc').classList.remove('hidden');
-}
+};
 
 /**
  * Zoom in on markers in cluster (taken from markerclusterer.js).
@@ -223,4 +246,4 @@ var zoomIntoCluster = function(cluster) {
      map.setZoom(map.maxZoom - 1);
    }
  }, 100);
-}
+};
