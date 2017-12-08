@@ -212,7 +212,8 @@ var showDescForCluster = function(cluster) {
 
   document.querySelector('.desc').textContent = "";
 
-  for (let event_id of event_ids) {
+  event_ids.forEach(function(event_id) {
+
     var event = getEventById(event_id);
 
     var desc = document.querySelector('.desc');
@@ -228,7 +229,7 @@ var showDescForCluster = function(cluster) {
 
     desc.appendChild(title);
     desc.appendChild(entry);
-  }
+  });
 
   document.querySelector('#col-desc').classList.remove('hidden');
 };
