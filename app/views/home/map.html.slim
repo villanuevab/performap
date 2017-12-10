@@ -1,2 +1,22 @@
-h1 Home#map
-p Find me in app/views/home/map.html.slim
+#map-wrapper
+  #menu-overlay
+    h1 = link_to "Performap", root_path
+
+    .col-menu
+      .map-main Map
+
+      .search Search...
+
+      .modus-other
+        = link_to root_path do
+          .col-header-title Directory
+
+  #desc-overlay
+    #col-desc.hidden
+      .desc data-event-id=-1
+        .desc-title Sample Title
+        .desc-entry Sample Entry
+
+  #map
+
+  script[async defer src=google_maps_url]

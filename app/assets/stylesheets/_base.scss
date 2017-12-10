@@ -16,6 +16,7 @@ html, body {
 
 .container {
   height: 100%;
+  position: relative;
   padding: 10px;
   box-sizing: border-box;
 }
@@ -43,4 +44,12 @@ a:hover { color: #000; }
 
 @mixin darken-background-on-hover($background-color) {
   &:hover { @include darken-background($background-color); }
+}
+
+@mixin lighten-background($background-color) {
+  background-color: lighten($background-color, 20%);
+}
+
+@mixin lighten-background-on-hover($background-color) {
+  &:hover { @include lighten-background($background-color); }
 }

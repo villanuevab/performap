@@ -1,11 +1,11 @@
 $color-directory-main-box-background: $color-perfume;
-$color-directory-other-box-background: #000000;
 $color-map-main-box-background: $color-perfume;
-$color-map-other-box-background: #000000;
+$color-modus-other-box-background: #000000;
 $color-search-box-background: $color-surf-crest;
 $color-latest-box-background: $color-aths-special;
 $color-country-box-background: $color-almond;
 $color-details-box-background: $color-spindle;
+$color-desc-box-background: $color-surf-crest;
 
 $col-menu-width-full: 160px;
 $col-latest-width-full: 280px;
@@ -97,16 +97,27 @@ table {
     }
   }
 
+  .map-main {
+    @extend %cell-heading;
+    background-color: $color-map-main-box-background;
+    margin-bottom: $box-margin;
+  }
+
   .search {
     @extend %cell-heading;
     background-color: $color-search-box-background;
     margin-bottom: $box-margin;
   }
 
-  .map-other {
-    @extend %cell-heading;
-    background-color: $color-map-other-box-background;
-    color: #ffffff;
+  .modus-other {
+    background-color: $color-modus-other-box-background;
+    @include lighten-background-on-hover($color-modus-other-box-background);
+
+    a {
+      @extend %cell-heading;
+
+      color: #ffffff;
+    }
   }
 }
 
@@ -207,5 +218,16 @@ table {
 
     .details-title { @extend %cell-heading; }
     .details-entry { @extend %cell-entry; }
+  }
+}
+
+#col-desc {
+  @include col($col-details-width-full);
+
+  .desc {
+    background-color: $color-desc-box-background;
+
+    .desc-title { @extend %cell-heading; }
+    .desc-entry { @extend %cell-entry; }
   }
 }

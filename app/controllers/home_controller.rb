@@ -8,5 +8,7 @@ class HomeController < ApplicationController
   end
 
   def map
+    @events = Event.recent.includes(:venues)
+    gon.jbuilder template: 'app/views/api/v1/events/index.json.jbuilder', as: :events
   end
 end

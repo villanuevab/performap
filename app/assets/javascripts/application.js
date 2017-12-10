@@ -15,4 +15,6 @@
 //= require jquery_ujs
 //= require jquery-tablesorter
 //= require turbolinks
-//= require_tree .
+//= require directory
+//= require markerclusterer
+//= require map
