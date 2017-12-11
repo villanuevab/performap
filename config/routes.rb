@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'home#directory'
 
   get 'map', to: 'home#map', as: :map
+  get 'logo', to: 'home#logo', as: :logo
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do

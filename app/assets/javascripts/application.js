@@ -15,6 +15,8 @@
 //= require jquery_ujs
 //= require jquery-tablesorter
 //= require turbolinks
+//= require three.min
 //= require directory
+//= require logo
 //= require markerclusterer
 //= require map
