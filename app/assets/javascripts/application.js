@@ -16,6 +16,7 @@
 //= require jquery-tablesorter
 //= require turbolinks
 //= require three.min
+//= require OrbitControls
 //= require directory
 //= require logo
 //= require markerclusterer
