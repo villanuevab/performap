@@ -28,7 +28,7 @@ function init( ) {
   // CAMERA
 
   camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
-  camera.position.set( 0 , 0 , 10 );
+  camera.position.set( 0 , 0 , 25 );
 
   // CONTROLS
 
@@ -47,7 +47,7 @@ function init( ) {
   material = new THREE.MeshNormalMaterial();
 
   mesh = new THREE.Mesh( geometry, material );
-  scene.add( mesh );
+  //scene.add( mesh );
 
   // create group for textgeometry
 
@@ -92,7 +92,7 @@ function init( ) {
 
     text = new THREE.Mesh( textShape, matLite );
     text.position.z = - 5;
-    scene.add( text );
+    //scene.add( text );
 
     // make line shape ( N.B. edge view remains visible )
 
@@ -124,7 +124,7 @@ function init( ) {
       lineText.add( lineMesh );
     }
 
-    scene.add( lineText );
+    //scene.add( lineText );
 
     // make text geometry
 
@@ -147,8 +147,10 @@ function init( ) {
 
     var centerOffset = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
     textMesh.position.x = centerOffset;
+    textMesh.position.y = -2.5;
 
     group.add ( textMesh );
+    group.rotateZ(0.25);
 
   } ); //end load function
 
