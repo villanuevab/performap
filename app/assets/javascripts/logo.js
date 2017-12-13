@@ -1,6 +1,16 @@
 var camera, scene, renderer;
 var geometry, material, mesh;
-var text, lineText;
+
+var mouseX = 0;
+var mouseY = 0;
+var mouseZ = 0;
+
+var windowHalfX = window.innerWidth / 2;
+var windowHalfY = window.innerHeight / 2;
+var windowHalfZ = window.innerWidth / 4;
+
+var minDistance = 3;
+var maxDistance = 50;
 
 var group, textGeo, textMesh;
 
@@ -25,6 +35,8 @@ $(document).on("turbolinks:load", function() {
 
 function init( ) {
 
+  document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
   // CAMERA
 
   camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
@@ -34,6 +46,8 @@ function init( ) {
 
   var controls = new THREE.OrbitControls( camera );
   controls.target.set( 0, 0, 0 );
+  controls.minDistance = minDistance;
+  controls.maxDistance = maxDistance;
   controls.update();
 
   // SCENE
@@ -41,13 +55,7 @@ function init( ) {
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 0xf0f0f0 );
 
-  // create cube
-
-  geometry = new THREE.BoxGeometry( 1,1,1 );
   material = new THREE.MeshNormalMaterial();
-
-  mesh = new THREE.Mesh( geometry, material );
-  //scene.add( mesh );
 
   // create group for textgeometry
 
@@ -59,74 +67,6 @@ function init( ) {
 
   var loader = new THREE.FontLoader();
   loader.load( 'assets/fonts/AmaticSC_Regular.json', function ( font ) {
-
-    var xMid;
-    var textShape = new THREE.BufferGeometry();
-    var color = 0x006699;
-
-    var matDark = new THREE.LineBasicMaterial( {
-      color: color,
-      side: THREE.DoubleSide
-    } );
-
-    var matLite = new THREE.MeshBasicMaterial( {
-      color: color,
-      transparent: true,
-      opacity: 0.4,
-      side: THREE.DoubleSide
-    } );
-
-    var shapes = font.generateShapes( message, 2, 2 );
-
-    var geometry = new THREE.ShapeGeometry( shapes );
-
-    geometry.computeBoundingBox();
-
-    xMid = - 0.5 * ( geometry.boundingBox.max.x - geometry.boundingBox.min.x );
-
-    geometry.translate( xMid, 0, 0 );
-
-    // make shape ( N.B. edge view not visible )
-
-    textShape.fromGeometry( geometry );
-
-    text = new THREE.Mesh( textShape, matLite );
-    text.position.z = - 5;
-    //scene.add( text );
-
-    // make line shape ( N.B. edge view remains visible )
-
-    var holeShapes = [];
-
-    for ( var i = 0; i < shapes.length; i ++ ) {
-      var shape = shapes[ i ];
-      if ( shape.holes && shape.holes.length > 0 ) {
-        for ( var j = 0; j < shape.holes.length; j ++ ) {
-          var hole = shape.holes[ j ];
-          holeShapes.push( hole );
-        }
-      }
-    }
-
-    shapes.push.apply( shapes, holeShapes );
-
-    lineText = new THREE.Object3D();
-
-    for ( var i = 0; i < shapes.length; i ++ ) {
-      var shape = shapes[ i ];
-
-      var points = shape.getPoints();
-      var geometry = new THREE.BufferGeometry().setFromPoints( points );
-
-      geometry.translate( xMid, 0, 0 );
-
-      var lineMesh = new THREE.Line( geometry, matDark );
-      lineText.add( lineMesh );
-    }
-
-    //scene.add( lineText );
-
-    // make text geometry
 
     textGeo = new THREE.TextGeometry( message, {
       font: font,
@@ -172,6 +112,17 @@ function onWindowResize() {
 
 }
 
+function onDocumentMouseMove(event) {
+  mouseX = (event.clientX - windowHalfX) * 5;
+  mouseY = (event.clientY - windowHalfY) * 5;
+  mouseZ = Math.sqrt(mouseX * mouseX + mouseY * mouseY);
+  if (mouseZ < windowHalfZ * 5)
+    mouseZ = mouseZ * -1;
+
+  //console.log(event.clientX + ",", event.clientY);
+  //console.log(mouseX + ", " + mouseY + ", " + mouseZ);
+}
+
 function animate() {
 
   requestAnimationFrame( animate );
@@ -179,11 +130,11 @@ function animate() {
   // mesh.rotation.x += 0.01;
   // mesh.rotation.y += 0.02;
 
-  lineText.rotation.x += 0.01;
-  lineText.rotation.y += 0.02;
+  // lineText.rotation.x += 0.01;
+  // lineText.rotation.y += 0.02;
 
-  text.rotation.x += 0.01;
-  text.rotation.y += 0.02;
+  // text.rotation.x += 0.01;
+  // text.rotation.y += 0.02;
 
   // text.rotateX(0.01);
   // text.rotateY(0.02);
@@ -196,5 +147,19 @@ function animate() {
 }
 
 function render() {
+  // camera.position.x += ( mouseX - camera.position.x ) * .001;
+  // camera.position.y += ( - mouseY - camera.position.y ) * .001;
+
+  camera.position.z = clamp(camera.position.z + (mouseZ - camera.position.z) * 0.0001, 2, 50);
+
+  // //console.log(camera.position);
+
+  camera.lookAt( scene.position );
+
   renderer.render( scene, camera );
+}
+
+// clamp a number
+function clamp(num, min, max) {
+  return num <= min ? min : num >= max ? max : num;
 }
