@@ -10,7 +10,7 @@ var windowHalfY = window.innerHeight / 2;
 var windowHalfZ = window.innerWidth / 4;
 
 var minDistance = 3;
-var maxDistance = 50;
+var maxDistance = 30;
 
 var group, textGeo, textMesh;
 
@@ -132,9 +132,9 @@ function animate() {
 
 function render() {
 
-  camera.position.x += ( mouseX - camera.position.x ) * .00001;
-  camera.position.y += ( - mouseY - camera.position.y ) * .0001;
-  camera.position.z = clamp(camera.position.z + (mouseZ - camera.position.z) * 0.0001, 2, 50);
+  camera.position.x = clamp(camera.position.x + ( mouseX - camera.position.x ) * .00003, -1 * maxDistance, maxDistance);
+  camera.position.y = clamp(camera.position.y + ( - mouseY - camera.position.y ) * .0003, -1 * maxDistance, maxDistance);
+  camera.position.z = clamp(camera.position.z + (mouseZ - camera.position.z) * 0.0003, minDistance, maxDistance);
 
   camera.lookAt( scene.position );
 
