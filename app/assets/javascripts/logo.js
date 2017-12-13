@@ -113,53 +113,37 @@ function onWindowResize() {
 }
 
 function onDocumentMouseMove(event) {
+
   mouseX = (event.clientX - windowHalfX) * 5;
   mouseY = (event.clientY - windowHalfY) * 5;
   mouseZ = Math.sqrt(mouseX * mouseX + mouseY * mouseY);
   if (mouseZ < windowHalfZ * 5)
     mouseZ = mouseZ * -1;
 
-  //console.log(event.clientX + ",", event.clientY);
-  //console.log(mouseX + ", " + mouseY + ", " + mouseZ);
 }
 
 function animate() {
 
   requestAnimationFrame( animate );
 
-  // mesh.rotation.x += 0.01;
-  // mesh.rotation.y += 0.02;
-
-  // lineText.rotation.x += 0.01;
-  // lineText.rotation.y += 0.02;
-
-  // text.rotation.x += 0.01;
-  // text.rotation.y += 0.02;
-
-  // text.rotateX(0.01);
-  // text.rotateY(0.02);
-
-  // lineText.rotateX(0.01);
-  // lineText.rotateY(0.02);
-
   render();
 
 }
 
 function render() {
-  // camera.position.x += ( mouseX - camera.position.x ) * .001;
-  // camera.position.y += ( - mouseY - camera.position.y ) * .001;
 
+  camera.position.x += ( mouseX - camera.position.x ) * .00001;
+  camera.position.y += ( - mouseY - camera.position.y ) * .0001;
   camera.position.z = clamp(camera.position.z + (mouseZ - camera.position.z) * 0.0001, 2, 50);
-
-  // //console.log(camera.position);
 
   camera.lookAt( scene.position );
 
   renderer.render( scene, camera );
+
 }
 
-// clamp a number
 function clamp(num, min, max) {
+
   return num <= min ? min : num >= max ? max : num;
+
 }
