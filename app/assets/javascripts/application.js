@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require jquery-tablesorter
 //= require turbolinks
+//= require mousestop.min
 //= require three.min
 //= require OrbitControls
 //= require directory
