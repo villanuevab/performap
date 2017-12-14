@@ -16,7 +16,7 @@ var windowHalfY = window.innerHeight / 2;
 var windowInnerZ = window.innerWidth / 3;
 
 var minDistance = 3;
-var maxDistance = 30;
+var maxDistance = 15;
 
 var group, textGeo, textMesh;
 
@@ -101,11 +101,11 @@ function init( ) {
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setPixelRatio( window.devicePixelRatio );
   renderer.setSize( window.innerWidth, window.innerHeight );
-  if (document.querySelector('.home.logo .container')) {
-    document.querySelector('.home.logo .container').appendChild( renderer.domElement );
+  if (document.querySelector('.home.directory .container')) {
+    document.querySelector('.home.directory .container').appendChild( renderer.domElement );
     window.addEventListener( 'resize', onWindowResize, false );
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-    $(document).mousestop(onDocumentMouseStop);
+    // $(document).mousestop(onDocumentMouseStop);
   }
 } // end init
 
@@ -175,11 +175,11 @@ function render() {
     ry = Math.sin( time * 0.3 ) * 0.5,
     rz = Math.sin( time * 0.2 ) * 0.5;
 
-  camera.position.x = clamp(camera.position.x + ( mouseX - camera.position.x ) * .0001, -1 * maxDistance, maxDistance);
-  camera.position.y = clamp(camera.position.y + ( - mouseY - camera.position.y ) * .0001, -1 * maxDistance, maxDistance);
-  camera.position.z = clamp(camera.position.z + (mouseZ - camera.position.z) * 0.0001, minDistance, maxDistance);
+  camera.position.x = clamp(camera.position.x + ( mouseX - camera.position.x ) * .00001, -1 * maxDistance, maxDistance);
+  camera.position.y = clamp(camera.position.y + ( - mouseY - camera.position.y ) * .00001, -1 * maxDistance, maxDistance);
+  camera.position.z = clamp(camera.position.z + (mouseZ - camera.position.z) * 0.00005, minDistance, maxDistance);
 
-  moveTowardDefaultPosition();
+  // moveTowardDefaultPosition();
 
   camera.lookAt( scene.position );
 
