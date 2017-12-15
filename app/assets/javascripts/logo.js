@@ -17,6 +17,7 @@ var windowInnerZ = window.innerWidth / 3;
 
 var minDistance = 3;
 var maxDistance = 15;
+var maxNegativeDistance = -1 * maxDistance;
 
 var group, textGeo, textMesh;
 
@@ -175,8 +176,8 @@ function render() {
     ry = Math.sin( time * 0.3 ) * 0.5,
     rz = Math.sin( time * 0.2 ) * 0.5;
 
-  camera.position.x = clamp(camera.position.x + ( mouseX - camera.position.x ) * .00001, -1 * maxDistance, maxDistance);
-  camera.position.y = clamp(camera.position.y + ( - mouseY - camera.position.y ) * .00001, -1 * maxDistance, maxDistance);
+  camera.position.x = clamp(camera.position.x + ( mouseX - camera.position.x ) * .00001, maxNegativeDistance, maxDistance);
+  camera.position.y = clamp(camera.position.y + ( - mouseY - camera.position.y ) * .00001, maxNegativeDistance, maxDistance);
   camera.position.z = clamp(camera.position.z + (mouseZ - camera.position.z) * 0.00005, minDistance, maxDistance);
 
   // moveTowardDefaultPosition();
