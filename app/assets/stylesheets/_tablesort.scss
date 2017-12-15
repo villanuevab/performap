@@ -206,7 +206,14 @@ $sortDescWhite : url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEAL
         display: none;
 
         // indent events table for given city
-        td.event-entry-name { padding-left: 15px };
+        td.event-entry-name {
+          width: 30%;
+          padding-left: 15px;
+        };
+
+        td.event-entry-start-date {
+          width: 75px;
+        }
       }
     }
 

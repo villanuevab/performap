@@ -53,3 +53,10 @@ a:hover { color: #000; }
 @mixin lighten-background-on-hover($background-color) {
   &:hover { @include lighten-background($background-color); }
 }
+
+td.ellipsis-clip {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width:1px;
+}

@@ -105,7 +105,8 @@ var createTrForEvent = function(event) {
 
   var td_venue = document.createElement('td');
   td_venue.classList.add('event-entry-venue');
-  td_venue.textContent = event.presenter;
+  td_venue.classList.add('ellipsis-clip');
+  td_venue.textContent = event.venue_names.join(', ');
   tr.appendChild(td_venue)
 
   var td_date = document.createElement('td');
