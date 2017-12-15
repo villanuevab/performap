@@ -35,9 +35,12 @@ var message = "performap",
 
   fontWeight = "normal";
 
-$(document).on("turbolinks:load", function() {
-  init();
-  animate();
+$(document).ready(function() {
+  // only load animation on directory modus
+  if (document.querySelector('.home.directory .container')) {
+    init();
+    animate();
+  }
 });
 
 function init( ) {
@@ -102,12 +105,11 @@ function init( ) {
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setPixelRatio( window.devicePixelRatio );
   renderer.setSize( window.innerWidth, window.innerHeight );
-  if (document.querySelector('.home.directory .container')) {
-    document.querySelector('.home.directory .container').appendChild( renderer.domElement );
-    window.addEventListener( 'resize', onWindowResize, false );
-    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-    // $(document).mousestop(onDocumentMouseStop);
-  }
+  document.querySelector('.home.directory .container').appendChild( renderer.domElement );
+  window.addEventListener( 'resize', onWindowResize, false );
+  document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+  // $(document).mousestop(onDocumentMouseStop);
+
 } // end init
 
 function onWindowResize() {
