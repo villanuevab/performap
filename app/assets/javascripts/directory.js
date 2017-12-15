@@ -380,7 +380,7 @@ var linkHandler = function (e) {
 };
 
 
-$(document).on("turbolinks:load", function() {
+$(document).ready(function() {
   // load this JS file only when on directory page
   if (!document.querySelector('.home.directory')) {
     return;
