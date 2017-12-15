@@ -54,7 +54,7 @@ table {
   }
 }
 
-.col-header-wrapper {
+.col-open-header-wrapper {
   padding: 5px 0 21px 0;
   position: relative;
   text-transform: uppercase;
@@ -74,6 +74,11 @@ table {
     background-color: $color-directory-main-box-background;
 
     .col-header-wrapper {
+      @extend %cell-heading;
+      @include darken-background-on-hover($color-directory-main-box-background);
+    }
+
+    .col-open-header-wrapper {
       @include darken-background-on-hover($color-directory-main-box-background);
     }
 

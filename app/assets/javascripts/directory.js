@@ -9,12 +9,20 @@ var getEventById = function(event_id) {
 
 // expand directory to show list of countries and tags
 var showDirectory = function() {
+  var directory_header = document.querySelector('.col-menu .directory-main .col-header-wrapper');
+  directory_header.classList.remove('col-header-wrapper');
+  directory_header.classList.add('col-open-header-wrapper');
+
   $('.directory-entries').slideDown('slow');
 };
 
 // hide directory of countries and tags
 var hideDirectory = function() {
-  $('.directory-entries').slideUp('slow');
+  $('.directory-entries').slideUp('slow', function() {
+    var directory_header = document.querySelector('.col-menu .directory-main .col-open-header-wrapper');
+    directory_header.classList.add('col-header-wrapper');
+    directory_header.classList.remove('col-open-header-wrapper');
+  });
 };
 
 

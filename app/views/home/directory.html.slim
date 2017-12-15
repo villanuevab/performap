@@ -8,14 +8,6 @@
       - @recent_countries.each do |country|
         .directory-entry.link-country data-country="#{country}" = country
 
-      .directory-subtitle &nbsp;
-
-      .directory-subtitle Type
-      .directory-entry.link-type Play
-      .directory-entry.link-type Musical
-      .directory-entry.link-type Festival
-      .directory-entry.link-type Biennial
-
   .search Search...
 
   .modus-other
@@ -24,7 +16,7 @@
 
 .col-latest.hidden
   .latest
-    .col-header-wrapper
+    .col-open-header-wrapper
       .col-header-title Latest
     .latest-entries
       - @events.each do |e|
@@ -34,7 +26,7 @@
 
 .col-cities.hidden
   .cities data-country=""
-    .col-header-wrapper
+    .col-open-header-wrapper
       .col-header-title Country
       .sort-dropdown.collapsed
         .sort-dropdown-title
