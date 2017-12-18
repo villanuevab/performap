@@ -205,6 +205,8 @@ $sortDescWhite : url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEAL
       div.secondary-table-wrapper {
         display: none;
 
+        tr.event-entry.selected { @include darken-background($background-color); }
+
         // indent events table for given city
         td.event-entry-name {
           width: 40%;
