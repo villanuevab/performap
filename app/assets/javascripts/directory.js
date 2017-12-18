@@ -210,7 +210,30 @@ var updateDetailsColumn = function(event_id) {
 
   document.querySelector('.details').setAttribute('data-event-id', event_id);
   document.querySelector('.details-title').textContent = event.name;
-  document.querySelector('.details-entry').textContent = event.description;
+
+  var details_entry = document.querySelector('.details-entry');
+  details_entry.textContent = "";
+
+  var p_time_place = document.createElement('p');
+
+  if (event.venue_names.length > 1 || event.venue_names[0]) {
+    var span_venues = document.createElement('span');
+    span_venues.textContent = event.venue_names.join(", ");
+  }
+
+  var span_dates = document.createElement('span');
+  span_dates.textContent = event.start_end_daterange;
+
+  var p_desc = document.createElement('p');
+  p_desc.textContent = event.description;
+
+  if (span_venues) {
+    p_time_place.appendChild(span_venues);
+    p_time_place.appendChild(document.createElement('br'));
+  }
+  p_time_place.appendChild(span_dates);
+  details_entry.appendChild(p_time_place);
+  details_entry.appendChild(p_desc);
 }
 
 
