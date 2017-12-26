@@ -52,11 +52,11 @@ function init( ) {
 
   // CONTROLS
 
-  var controls = new THREE.OrbitControls( camera );
-  controls.target.set( 0, 0, 0 );
-  controls.minDistance = minDistance;
-  controls.maxDistance = maxDistance;
-  controls.update();
+  // var controls = new THREE.OrbitControls( camera );
+  // controls.target.set( 0, 0, 0 );
+  // controls.minDistance = minDistance;
+  // controls.maxDistance = maxDistance;
+  // controls.update();
 
   // SCENE
 

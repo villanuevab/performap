@@ -9,12 +9,20 @@ var getEventById = function(event_id) {
 
 // expand directory to show list of countries and tags
 var showDirectory = function() {
+  var directory_header = document.querySelector('.col-menu .directory-main .col-header-wrapper');
+  directory_header.classList.remove('col-header-wrapper');
+  directory_header.classList.add('col-open-header-wrapper');
+
   $('.directory-entries').slideDown('slow');
 };
 
 // hide directory of countries and tags
 var hideDirectory = function() {
-  $('.directory-entries').slideUp('slow');
+  $('.directory-entries').slideUp('slow', function() {
+    var directory_header = document.querySelector('.col-menu .directory-main .col-open-header-wrapper');
+    directory_header.classList.add('col-header-wrapper');
+    directory_header.classList.remove('col-open-header-wrapper');
+  });
 };
 
 
@@ -97,7 +105,8 @@ var createTrForEvent = function(event) {
 
   var td_venue = document.createElement('td');
   td_venue.classList.add('event-entry-venue');
-  td_venue.textContent = event.presenter;
+  td_venue.classList.add('ellipsis-clip');
+  td_venue.textContent = event.venue_names.join(', ');
   tr.appendChild(td_venue)
 
   var td_date = document.createElement('td');
@@ -201,7 +210,30 @@ var updateDetailsColumn = function(event_id) {
 
   document.querySelector('.details').setAttribute('data-event-id', event_id);
   document.querySelector('.details-title').textContent = event.name;
-  document.querySelector('.details-entry').textContent = event.description;
+
+  var details_entry = document.querySelector('.details-entry');
+  details_entry.textContent = "";
+
+  var p_time_place = document.createElement('p');
+
+  if (event.venue_names.length > 1 || event.venue_names[0]) {
+    var span_venues = document.createElement('span');
+    span_venues.textContent = event.venue_names.join(", ");
+  }
+
+  var span_dates = document.createElement('span');
+  span_dates.textContent = event.start_end_daterange;
+
+  var p_desc = document.createElement('p');
+  p_desc.textContent = event.description;
+
+  if (span_venues) {
+    p_time_place.appendChild(span_venues);
+    p_time_place.appendChild(document.createElement('br'));
+  }
+  p_time_place.appendChild(span_dates);
+  details_entry.appendChild(p_time_place);
+  details_entry.appendChild(p_desc);
 }
 
 

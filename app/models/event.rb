@@ -1,28 +1,11 @@
 class Event < ApplicationRecord
   has_and_belongs_to_many :venues, :uniq => true
 
-  scope :cities, -> { includes(:venues).pluck('venues.city').uniq }
   scope :recent, -> { order(updated_at: :desc) }
 
-  # get array of unique cities for given event based on associated venues
-  def cities
-    self.venues.pluck(:city).uniq
-  end
-
-  # get array of unique coordinates based on given event's associated venues
-  # used for map modus to create markers
-  def coordinates
-    self.venues.pluck(:latitude, :longitude)
-  end
-
-  # get the city with the majority of an event's venue(s)
+  # get the city in which the most venues are found
   def primary_city
-    mode(self.venues.pluck(:city))
-  end
-
-  # get array of unique countries for given event based on associated venues
-  def countries
-    self.venues.pluck(:country).uniq
+    mode(self.venues.cities)
   end
 
   private
@@ -30,5 +13,4 @@ class Event < ApplicationRecord
       freq = array.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
       array.max_by { |v| freq[v] }
     end
-
 end
