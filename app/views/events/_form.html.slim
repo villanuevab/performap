@@ -9,21 +9,6 @@ p
   = f.text_field :presenter
 
 p
-  = f.label :city, class: "required"
-  br
-  = f.text_field :city, required: true
-
-p
-  = f.label :state
-  br
-  = f.text_field :state
-
-p
-  = f.label :country, class: "required"
-  br
-  = f.text_field :country, required: true
-
-p
   = f.label :start_date, class: "required"
   br
   = f.date_select :start_date, required: true
@@ -44,22 +29,22 @@ p
   = f.text_field :website
 
 p
-  = f.label :facebook
+  = f.label :facebook, "Link to Facebook page"
   br
   = f.text_field :facebook
 
 p
-  = f.label :instagram, "Instagram Username"
+  = f.label :instagram, "Link to Instagram"
   br
   = f.text_field :instagram
 
 p
-  = f.label :twitter, "Twitter Username"
+  = f.label :twitter, "Link to Twitter"
   br
   = f.text_field :twitter
 
 p
-  = f.label :youtube
+  = f.label :youtube, "Link to Youtube channel"
   br
   = f.text_field :youtube
 

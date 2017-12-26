@@ -37,10 +37,10 @@ table.tablesorter#events-index
             = link_to "Link to FB", e.facebook
         td
           - unless e.instagram.blank?
-            = link_to username(e.instagram), e.instagram
+            = link_to "@#{username(e.instagram)}", e.instagram
         td
           - unless e.twitter.blank?
-            = link_to username(e.twitter), e.twitter
+            = link_to "@#{username(e.twitter)}", e.twitter
         td
           - unless e.youtube.blank?
             = link_to "Link to YT", e.youtube
