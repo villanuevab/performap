@@ -41,14 +41,14 @@ $box-margin: 10px;
 table {
   @extend %static-link;
 
-  // hide columns used to sort tables
-  // (4) Updated At
-  th:nth-child(4), td:nth-child(4) {
-    display: none;
-  }
-
-  &.secondary-table {
+  &.city-events-table {
     border-width: 0 0 0 0;
+
+    // hide columns used to sort tables
+    // (4) Updated At
+    th:nth-child(4), td:nth-child(4) {
+      display: none;
+    }
 
     thead { display: none; }
   }

@@ -3,11 +3,11 @@ module LinkHelper
     "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.secrets.google_maps_api_key}&callback=initMapModus"
   end
 
-  def instagram_link(username)
+  def instagram_url(username)
     "https://www.instagram.com/" + username
   end
 
-  def twitter_link(username)
+  def twitter_url(username)
     "https://www.twitter.com/" + username
   end
 end

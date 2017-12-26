@@ -18,6 +18,7 @@
 //= require three.min
 //= require OrbitControls
 //= require directory
+//= require events
 //= require logo
 //= require markerclusterer
 //= require map

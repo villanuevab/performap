@@ -60,6 +60,7 @@ var setupEventsTable = function() {
   var table = document.createElement('table');
   table.classList.add('secondary-table');
   table.classList.add('tablesorter');
+  table.classList.add('city-events-table');
 
   var div = document.createElement('div');
   div.classList.add('secondary-table-wrapper');
