@@ -1,0 +1,21 @@
+h3 List of Venues
+
+table.tablesorter#venues-index
+  thead
+   tr
+     th Name
+     th.sorter-false Coordinates
+     th City
+     th State
+     th Country
+     th Associated Events
+
+  tbody
+    - @venues.each do |v|
+      tr
+        td = v.name
+        td = coordinates(v)
+        td = v.city
+        td = v.state
+        td = v.country
+        td = comma_separated_list(v.events.names)

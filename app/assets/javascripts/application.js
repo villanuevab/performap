@@ -19,6 +19,7 @@
 //= require OrbitControls
 //= require directory
 //= require events
+//= require venues
 //= require logo
 //= require markerclusterer
 //= require map
