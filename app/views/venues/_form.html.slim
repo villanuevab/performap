@@ -1,0 +1,42 @@
+p
+  = f.label :name, class: "required"
+  br
+  = f.text_field :name, required: true
+
+p In order to change the address of this venue, please update the field "Given address" below.
+p
+  = f.label :given_address, class: "required"
+  br
+  = f.text_field :given_address, required: true
+br
+
+.warning-box
+  p The following fields are automatically filled in and updated using Google Maps geocoding service based on the given address above.
+  p We do not recommend directly changing the fields below.
+
+  p
+    = f.label :formatted_address, class: "required"
+    br
+    = f.text_field :formatted_address, required: true
+
+  p
+    = f.label :street_address, class: "required"
+    br
+    = f.text_field :street_address, required: true
+
+  p
+    = f.label :city, class: "required"
+    br
+    = f.text_field :city, required: true
+
+  p
+    = f.label :state, class: "required"
+    br
+    = f.text_field :state, required: true
+
+  p
+    = f.label :country, class: "required"
+    br
+    = f.text_field :country, required: true
+
+p = f.submit
