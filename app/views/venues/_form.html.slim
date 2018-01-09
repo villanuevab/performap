@@ -15,6 +15,16 @@ br
   p We do not recommend directly changing the fields below.
 
   p
+    = f.label :latitude, class: "required"
+    br
+    = f.text_field :latitude, required: true
+
+  p
+    = f.label :longitude, class: "required"
+    br
+    = f.text_field :longitude, required: true
+
+  p
     = f.label :formatted_address, class: "required"
     br
     = f.text_field :formatted_address, required: true

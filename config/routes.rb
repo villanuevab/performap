@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :events
-  resources :venues
+  resources :events do
+    post 'delete_venue_from', on: :member
+  end
+
+  resources :venues, only: [:index, :show, :edit, :update] do
+    post 'delete_event_from', on: :member
+  end
 end

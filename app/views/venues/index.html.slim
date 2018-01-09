@@ -20,4 +20,6 @@ table.tablesorter#venues-index
         td = v.state
         td = v.country
         td = comma_separated_list(v.events.names)
-        td = link_to "Edit", edit_venue_path(v)
+        td
+          = link_to "View", venue_path(v)
+          =< link_to "Edit", edit_venue_path(v)

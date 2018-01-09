@@ -6,43 +6,23 @@ table.tablesorter#events-index
   thead
     tr
       th Name
-      th Presenter
       th Cities
       th Country
       th Start Date
       th.sorter-false End Date
       th.sorter-false Description
-      th.sorter-false Website
-      th.sorter-false Facebook
-      th.sorter-false Instagram
-      th.sorter-false Twitter
-      th.sorter-false Youtube
       th Last Updated
       th.sorter-false
   tbody
     - @events.each do |e|
       tr
         td = e.name
-        td = e.presenter
         td = comma_separated_list(e.venues.cities)
         td = comma_separated_list(e.venues.countries)
         td = e.start_date
         td = e.end_date
         td = e.description
-        td
-          - unless e.website.blank?
-            = link_to "#{e.website}", e.website
-        td
-          - unless e.facebook.blank?
-            = link_to "Link to FB", e.facebook
-        td
-          - unless e.instagram.blank?
-            = link_to "@#{username(e.instagram)}", e.instagram
-        td
-          - unless e.twitter.blank?
-            = link_to "@#{username(e.twitter)}", e.twitter
-        td
-          - unless e.youtube.blank?
-            = link_to "Link to YT", e.youtube
         td = e.updated_at
-        td = link_to "Edit", edit_event_path(e)
+        td
+          = link_to "View more", e
+          =< link_to "Edit", edit_event_path(e)

@@ -3,6 +3,10 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
+  def show
+    @event = Event.find(params[:id])
+  end
+
   def new
     @event = Event.new
   end
@@ -25,6 +29,17 @@ class EventsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def delete_venue_from
+    @event = Event.find(params[:id])
+    venue = @event.venues.find(params[:venue_id])
+
+    if venue
+      @event.venues.delete(venue)
+    end
+
+    redirect_to @event
   end
 
   private

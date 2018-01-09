@@ -3,3 +3,16 @@
   border-radius: 4px;
   padding: 10px;
 }
+
+table.model-list {
+  a {
+    @extend a;
+    &.red { @extend .red; }
+  }
+}
+
+#venues-index {
+  a {
+    display: inline !important;
+  }
+}

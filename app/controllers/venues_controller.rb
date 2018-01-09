@@ -3,6 +3,10 @@ class VenuesController < ApplicationController
     @venues = Venue.all
   end
 
+  def show
+    @venue = Venue.find(params[:id])
+  end
+
   def edit
     @venue = Venue.find(params[:id])
   end
@@ -14,6 +18,13 @@ class VenuesController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def delete_event_from
+    venue = Venue.find(params[:venue_id])
+    event = Event.find(params[:id])
+
+    redirect_to venues_path
   end
 
   private

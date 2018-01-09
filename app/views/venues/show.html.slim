@@ -1,0 +1,16 @@
+h3 = @venue.name
+
+p = @venue.formatted_address
+
+p = link_to "Click to edit venue details", edit_venue_path(@venue)
+
+br
+br
+
+h4 Associated events
+
+table.model-list
+  - @venue.events.each do |event|
+    tr
+      td = link_to event.name, event_path(event)
+      td = link_to "Remove from venue", "", class: "red"

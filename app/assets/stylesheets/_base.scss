@@ -3,6 +3,7 @@ $color-aths-special: #E8E5C3;
 $color-surf-crest: #D1E4D4;
 $color-spindle: #C5DDF0;
 $color-perfume: #ECCDFB;
+$color-red: red;
 
 $font-family-text: "Roboto", "Helvetica Neue", "Helvetica", Arial, sans-serif;
 
@@ -37,6 +38,12 @@ a, a:link, a:visited { color: grey; }
 a:hover { color: #000; }
 
 .hidden { display: none !important; }
+
+.red {
+  color: $color-red;
+
+  &:hover { color: darken($color-red, 10%); }
+}
 
 @mixin darken-background($background-color) {
   background-color: darken($background-color, 10%);
