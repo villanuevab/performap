@@ -21,10 +21,14 @@ class VenuesController < ApplicationController
   end
 
   def delete_event_from
-    venue = Venue.find(params[:venue_id])
-    event = Event.find(params[:id])
+    @venue = Venue.find(params[:id])
+    event = @venue.events.find(params[:event_id])
 
-    redirect_to venues_path
+    if event
+      @venue.events.delete(event)
+    end
+
+    redirect_to @venue
   end
 
   private

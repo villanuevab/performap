@@ -13,4 +13,4 @@ table.model-list
   - @venue.events.each do |event|
     tr
       td = link_to event.name, event_path(event)
-      td = link_to "Remove from venue", "", class: "red"
+      td = link_to "Remove from venue", delete_event_from_venue_path(:event_id => event.id), :method => :post, data: {:confirm => "Are you sure you want to remove this event association?"}, class: "red"
