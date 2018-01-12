@@ -9,8 +9,16 @@
     a {
       color: grey;
       text-decoration: underline;
+      display: inline;
 
       &:hover { color: #000000; }
     }
+  }
+}
+
+#events-index {
+  // Description column
+  th:nth-child(6) {
+    width: 50%;
   }
 }

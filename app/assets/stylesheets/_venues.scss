@@ -10,9 +10,3 @@ table.model-list {
     &.red { @extend .red; }
   }
 }
-
-#venues-index {
-  a {
-    display: inline !important;
-  }
-}
