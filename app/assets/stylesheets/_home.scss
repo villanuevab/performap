@@ -25,7 +25,6 @@ $box-margin: 10px;
 
 @mixin col($width) {
   @extend %col-format;
-  @extend %static-link;
 
   width: $width;
 }
@@ -67,6 +66,7 @@ table {
 
 .col-menu {
   @include col($col-menu-width-full);
+  @extend %static-link;
 
   .directory-main {
     margin-bottom: $box-margin;
@@ -161,6 +161,7 @@ table {
 
 .col-cities {
   @include col($col-country-width-full);
+  @extend %static-link;
 
   .cities {
     display: none;
