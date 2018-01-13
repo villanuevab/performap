@@ -1,3 +1,5 @@
+= render 'shared/flash_messages' if !flash.empty?
+
 h3 = @event.name
 
 p
@@ -7,27 +9,27 @@ p
 
 p = @event.description
 
-- if @event.website
+- unless @event.website.blank?
   span
     ' Website:
     =< link_to @event.website, @event.website, target: "blank"
   br
-- if @event.facebook
+- unless @event.facebook.blank?
   span
     ' Facebook:
     =< link_to @event.facebook, @event.facebook, target: "blank"
   br
-- if @event.instagram
+- unless @event.instagram.blank?
   span
     ' Instagram:
     =< link_to @event.instagram, @event.instagram, target: "blank"
   br
-- if @event.twitter
+- unless @event.twitter.blank?
   span
     ' Twitter:
     =< link_to @event.twitter, @event.twitter, target: "blank"
   br
-- if @event.youtube
+- unless @event.youtube.blank?
   span
     ' Youtube:
     =< link_to @event.youtube, @event.youtube, target: "blank"

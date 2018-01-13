@@ -25,15 +25,17 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update_attributes(event_params)
-      redirect_to events_path
+      flash[:success] = "Event successfully updated"
+      redirect_to @event
     else
+      flash[:error] = "Event was not updated"
       render 'edit'
     end
   end
 
   def destroy
     Event.find(params[:id]).destroy
-    flash[:success] = "Event removed"
+    flash[:success] = "Event successfully removed"
     redirect_to events_path
   end
 

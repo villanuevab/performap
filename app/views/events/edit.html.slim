@@ -2,5 +2,7 @@ h3
   ' Edit
   =< @event.name
 
+= render 'shared/flash_messages' if !flash.empty?
+
 = form_for @event do |f|
   = render "form", f:f

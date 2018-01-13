@@ -14,8 +14,10 @@ class VenuesController < ApplicationController
   def update
     @venue = Venue.find(params[:id])
     if @venue.update_attributes(venue_params)
-      redirect_to venues_path
+      flash[:success] = "Venue successfully updated"
+      redirect_to @venue
     else
+      flash[:error] = "Venue was not updated"
       render 'edit'
     end
   end

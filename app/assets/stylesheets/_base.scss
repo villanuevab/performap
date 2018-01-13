@@ -83,10 +83,17 @@ a:hover { color: #000; }
  *----------------------*/
 
 div.flash {
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+
   &.success {
     background-color: $color-surf-crest;
-    padding: 10px;
-    border-radius: 4px;
     border: solid 1px darken($color-surf-crest, 10%);
+  }
+
+  &.error {
+    background-color: $color-perfume;
+    border: solid 1px darken($color-perfume, 10%);
   }
 }

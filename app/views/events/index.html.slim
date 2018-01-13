@@ -28,4 +28,5 @@ table.tablesorter#events-index
         td
           = link_to "View", e
           =< link_to "Edit", edit_event_path(e)
-          =< link_to "Remove", e, :method => :delete, data: {confirm: "Are you sure you want to remove this event?"}, class: "red"
+          br
+          = link_to "Remove", e, :method => :delete, data: {confirm: "Are you sure you want to remove this event?"}, class: "red"

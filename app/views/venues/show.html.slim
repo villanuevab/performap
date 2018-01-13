@@ -1,3 +1,5 @@
+= render 'shared/flash_messages' if !flash.empty?
+
 h3 = @venue.name
 
 p = @venue.formatted_address

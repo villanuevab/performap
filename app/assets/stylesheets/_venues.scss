@@ -9,6 +9,11 @@ table.model-list {
     @extend a;
     &.red { @extend .red; }
   }
+
+  // Remove column
+  td:nth-child(2) {
+    padding-left: 15px;
+  }
 }
 
 #venues-index {
