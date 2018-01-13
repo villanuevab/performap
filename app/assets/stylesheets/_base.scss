@@ -22,6 +22,24 @@ html, body {
   box-sizing: border-box;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  @extend %static-link;
+  margin-top: 0;
+}
+
+.hidden { display: none !important; }
+
+td.ellipsis-clip {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width:1px;
+}
+
+/*----------------------*
+ * Links
+ *----------------------*/
+
 %static-link {
   a, a:link, a:visited, a:hover {
     color: #000;
@@ -29,15 +47,13 @@ html, body {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  @extend %static-link;
-  margin-top: 0;
-}
-
 a, a:link, a:visited { color: grey; }
 a:hover { color: #000; }
 
-.hidden { display: none !important; }
+
+/*----------------------*
+ * Colors
+ *----------------------*/
 
 .red {
   color: $color-red;
@@ -61,9 +77,16 @@ a:hover { color: #000; }
   &:hover { @include lighten-background($background-color); }
 }
 
-td.ellipsis-clip {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width:1px;
+
+/*----------------------*
+ * Flash Messages
+ *----------------------*/
+
+div.flash {
+  &.success {
+    background-color: $color-surf-crest;
+    padding: 10px;
+    border-radius: 4px;
+    border: solid 1px darken($color-surf-crest, 10%);
+  }
 }

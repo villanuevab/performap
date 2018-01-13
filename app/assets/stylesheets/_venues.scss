@@ -10,3 +10,18 @@ table.model-list {
     &.red { @extend .red; }
   }
 }
+
+#venues-index {
+  @include tablesorter-theme;
+
+  thead th { font-weight: 700; }
+
+  tbody td {
+    a {
+      @extend a;
+      text-decoration: underline;
+
+      &:hover { color: #000000; }
+    }
+  }
+}

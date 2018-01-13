@@ -1,3 +1,5 @@
+= render 'shared/flash_messages' if !flash.empty?
+
 p = link_to "Add New Event", new_event_path
 
 h3 List of Events
@@ -24,5 +26,6 @@ table.tablesorter#events-index
         td = e.description
         td = e.updated_at
         td
-          = link_to "View more", e
+          = link_to "View", e
           =< link_to "Edit", edit_event_path(e)
+          =< link_to "Remove", e, :method => :delete, data: {confirm: "Are you sure you want to remove this event?"}, class: "red"

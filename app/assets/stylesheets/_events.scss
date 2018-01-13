@@ -1,17 +1,12 @@
-#events-index, #venues-index {
+#events-index {
   @include tablesorter-theme;
 
   thead th { font-weight: 700; }
 
   tbody td {
-    hyphens: auto;
-
     a {
-      color: grey;
+      @extend a;
       text-decoration: underline;
-      display: inline;
-
-      &:hover { color: #000000; }
     }
   }
 }
@@ -20,5 +15,10 @@
   // Description column
   th:nth-child(6) {
     width: 50%;
+  }
+
+  a {
+    @extend a;
+    &.red { @extend .red; }
   }
 }
