@@ -25,7 +25,6 @@ $box-margin: 10px;
 
 @mixin col($width) {
   @extend %col-format;
-  @extend %static-link;
 
   width: $width;
 }
@@ -41,14 +40,14 @@ $box-margin: 10px;
 table {
   @extend %static-link;
 
-  // hide columns used to sort tables
-  // (4) Updated At
-  th:nth-child(4), td:nth-child(4) {
-    display: none;
-  }
-
-  &.secondary-table {
+  &.city-events-table {
     border-width: 0 0 0 0;
+
+    // hide columns used to sort tables
+    // (4) Updated At
+    th:nth-child(4), td:nth-child(4) {
+      display: none;
+    }
 
     thead { display: none; }
   }
@@ -67,6 +66,7 @@ table {
 
 .col-menu {
   @include col($col-menu-width-full);
+  @extend %static-link;
 
   .directory-main {
     margin-bottom: $box-margin;
@@ -161,6 +161,7 @@ table {
 
 .col-cities {
   @include col($col-country-width-full);
+  @extend %static-link;
 
   .cities {
     display: none;

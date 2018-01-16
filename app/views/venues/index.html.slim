@@ -1,0 +1,25 @@
+h3 List of Venues
+
+table.tablesorter#venues-index
+  thead
+   tr
+     th Name
+     th.sorter-false Street Address
+     th City
+     th State
+     th Country
+     th Associated Events
+     th.sorter-false
+
+  tbody
+    - @venues.each do |v|
+      tr
+        td = v.name
+        td = v.street_address
+        td = v.city
+        td = v.state
+        td = v.country
+        td = comma_separated_list(v.events.names)
+        td
+          = link_to "View", venue_path(v)
+          =< link_to "Edit", edit_venue_path(v)

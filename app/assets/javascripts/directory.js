@@ -60,6 +60,7 @@ var setupEventsTable = function() {
   var table = document.createElement('table');
   table.classList.add('secondary-table');
   table.classList.add('tablesorter');
+  table.classList.add('city-events-table');
 
   var div = document.createElement('div');
   div.classList.add('secondary-table-wrapper');
@@ -227,6 +228,17 @@ var updateDetailsColumn = function(event_id) {
   var p_desc = document.createElement('p');
   p_desc.textContent = event.description;
 
+  var div_links = document.createElement('div');
+  div_links.textContent = "MORE DETAILS..."
+  for (key in event["links"]) {
+    if (event["links"][key] && event["links"][key].replace(/\s/g,'').length > 0) {
+      var link = document.createElement('a');
+      link.href = event["links"][key];
+      link.textContent = key;
+      div_links.appendChild(link);
+    }
+  }
+
   if (span_venues) {
     p_time_place.appendChild(span_venues);
     p_time_place.appendChild(document.createElement('br'));
@@ -234,6 +246,7 @@ var updateDetailsColumn = function(event_id) {
   p_time_place.appendChild(span_dates);
   details_entry.appendChild(p_time_place);
   details_entry.appendChild(p_desc);
+  details_entry.appendChild(div_links);
 }
 
 

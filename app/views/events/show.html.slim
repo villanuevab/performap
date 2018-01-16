@@ -1,0 +1,49 @@
+= render 'shared/flash_messages' if !flash.empty?
+
+h3 = @event.name
+
+p
+  ' #{@event.start_date.strftime("%b %e, %Y")} to #{@event.end_date.strftime("%b %e, %Y")} |
+  =<> comma_separated_list(@event.venues.countries)
+  ' | Presented by #{@event.presenter}
+
+p = @event.description
+
+- unless @event.website.blank?
+  span
+    ' Website:
+    =< link_to @event.website, @event.website, target: "blank"
+  br
+- unless @event.facebook.blank?
+  span
+    ' Facebook:
+    =< link_to @event.facebook, @event.facebook, target: "blank"
+  br
+- unless @event.instagram.blank?
+  span
+    ' Instagram:
+    =< link_to @event.instagram, @event.instagram, target: "blank"
+  br
+- unless @event.twitter.blank?
+  span
+    ' Twitter:
+    =< link_to @event.twitter, @event.twitter, target: "blank"
+  br
+- unless @event.youtube.blank?
+  span
+    ' Youtube:
+    =< link_to @event.youtube, @event.youtube, target: "blank"
+  br
+
+p = link_to "Click to edit event details", edit_event_path(@event)
+
+br
+br
+
+h4 Associated venues
+
+table.model-list
+  - @event.venues.each do |venue|
+    tr
+      td = link_to venue.name, venue_path(venue)
+      td = link_to "Remove from event", delete_venue_from_event_path(:venue_id => venue.id), :method => :post, data: {:confirm => "Are you sure you want to remove this venue association?"}, class: "red"

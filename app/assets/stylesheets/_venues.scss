@@ -1,0 +1,32 @@
+.warning-box {
+  border: 1px solid red;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+table.model-list {
+  a {
+    @extend a;
+    &.red { @extend .red; }
+  }
+
+  // Remove column
+  td:nth-child(2) {
+    padding-left: 15px;
+  }
+}
+
+#venues-index {
+  @include tablesorter-theme;
+
+  thead th { font-weight: 700; }
+
+  tbody td {
+    a {
+      @extend a;
+      text-decoration: underline;
+
+      &:hover { color: #000000; }
+    }
+  }
+}

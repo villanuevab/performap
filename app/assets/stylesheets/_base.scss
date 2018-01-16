@@ -3,6 +3,7 @@ $color-aths-special: #E8E5C3;
 $color-surf-crest: #D1E4D4;
 $color-spindle: #C5DDF0;
 $color-perfume: #ECCDFB;
+$color-red: red;
 
 $font-family-text: "Roboto", "Helvetica Neue", "Helvetica", Arial, sans-serif;
 
@@ -21,6 +22,24 @@ html, body {
   box-sizing: border-box;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  @extend %static-link;
+  margin-top: 0;
+}
+
+.hidden { display: none !important; }
+
+td.ellipsis-clip {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width:1px;
+}
+
+/*----------------------*
+ * Links
+ *----------------------*/
+
 %static-link {
   a, a:link, a:visited, a:hover {
     color: #000;
@@ -28,15 +47,19 @@ html, body {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  @extend %static-link;
-  margin-top: 0;
-}
-
 a, a:link, a:visited { color: grey; }
 a:hover { color: #000; }
 
-.hidden { display: none !important; }
+
+/*----------------------*
+ * Colors
+ *----------------------*/
+
+.red {
+  color: $color-red;
+
+  &:hover { color: darken($color-red, 10%); }
+}
 
 @mixin darken-background($background-color) {
   background-color: darken($background-color, 10%);
@@ -54,9 +77,23 @@ a:hover { color: #000; }
   &:hover { @include lighten-background($background-color); }
 }
 
-td.ellipsis-clip {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width:1px;
+
+/*----------------------*
+ * Flash Messages
+ *----------------------*/
+
+div.flash {
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+
+  &.success {
+    background-color: $color-surf-crest;
+    border: solid 1px darken($color-surf-crest, 10%);
+  }
+
+  &.error {
+    background-color: $color-perfume;
+    border: solid 1px darken($color-perfume, 10%);
+  }
 }
