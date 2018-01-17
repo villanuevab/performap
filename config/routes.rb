@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'home#directory'
 
   get 'map', to: 'home#map', as: :map
+  get 'dashboard', to: 'home#dashboard', as: :dashboard
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
@@ -20,4 +21,11 @@ Rails.application.routes.draw do
   resources :venues, only: [:index, :show, :edit, :update] do
     post 'delete_event_from', on: :member
   end
+
+  get 'sign_up', to: 'users#new', as: :sign_up
+  resources :users
+
+  get 'sign_in', to: 'sessions#new', as: :sign_in
+  post 'sign_in', to: 'sessions#create'
+  get 'sign_out', to: 'sessions#destroy', as: :sign_out
 end

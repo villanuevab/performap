@@ -1,0 +1,20 @@
+h3 Sign Up
+
+= form_for @user do |f|
+  p
+    = f.label :name, class: "required"
+    = f.text_field :name, required: true
+
+  p
+    = f.label :email, class: "required"
+    = f.email_field :email, required: true
+
+  p
+    = f.label :password, class: "required"
+    = f.password_field :password, required: true
+
+  p
+    = f.label :password_confirmation, class: "required"
+    = f.password_field :password_confirmation, required: true
+
+  = f.submit "Submit"

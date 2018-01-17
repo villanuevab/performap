@@ -1,4 +1,10 @@
 class HomeController < ApplicationController
+
+  before_action :authorize, only: [:dashboard]
+
+  def dashboard
+  end
+
   def directory
     @events = Event.recent.includes(:venues)
     @recent_countries = Venue.countries
@@ -11,4 +17,5 @@ class HomeController < ApplicationController
     @events = Event.recent.includes(:venues)
     gon.jbuilder template: 'app/views/api/v1/events/index.json.jbuilder', as: :events
   end
+
 end
